@@ -1,597 +1,635 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nisha Verma | Product Manager Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            50: '#f0fdfa',
-                            100: '#ccfbf1',
-                            500: '#14b8a6', // Teal main
-                            600: '#0d9488',
-                            900: '#134e4a',
-                        },
-                        dark: '#0f172a'
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Tektur:wght@400;500&display=swap" rel="stylesheet">
+
     <style>
-        /* Custom scrollbar for a polished look */
-        ::-webkit-scrollbar {
-            width: 8px;
+        /* ---------- Tokens ---------- */
+        :root {
+            --bg: #100c1a;
+            --surface: #181326;
+            --surface-2: #201a31;
+            --line: rgba(255, 255, 255, 0.08);
+            --line-strong: rgba(255, 255, 255, 0.16);
+            --text: #f3eff8;
+            --muted: #a9a2b8;
+            --faint: #6f6882;
+            --accent: #EB519B;
+            --accent-soft: rgba(235, 81, 155, 0.12);
+
+            --font-display: 'Space Grotesk', system-ui, sans-serif;
+            --font-body: 'Tektur', ui-monospace, monospace;
+
+            --pad: 22px;   /* card padding, always */
+            --gap: 20px;   /* grid gaps, always */
+            --radius: 14px;
+            --max: 1120px;
         }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1; 
+
+        /* ---------- Base ---------- */
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--muted);
+            font-family: var(--font-body);
+            font-size: 15px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1; 
-            border-radius: 4px;
+        ::selection { background: var(--accent); color: #fff; }
+        a { color: inherit; text-decoration: none; }
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            color: var(--text);
+            letter-spacing: -0.025em;
+            line-height: 1.1;
+            margin: 0;
+            font-weight: 600;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8; 
+        p { margin: 0; }
+        em { font-style: italic; color: var(--accent); font-weight: inherit; }
+        strong { color: var(--text); font-weight: 500; }
+
+        .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+        section { padding: 110px 0; border-top: 1px solid var(--line); }
+
+        /* Background glow */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: -20% -10% auto auto;
+            width: 60vw; height: 60vw;
+            background: radial-gradient(circle, rgba(235, 81, 155, 0.14), transparent 60%);
+            pointer-events: none;
+            z-index: -1;
         }
-        
-        .fade-in-up {
-            animation: fadeInUp 0.8s ease-out forwards;
-            opacity: 0;
-            transform: translateY(20px);
+
+        /* ---------- Shared pieces ---------- */
+        .eyebrow {
+            display: flex; align-items: center; gap: 14px;
+            font-family: var(--font-body);
+            font-size: 12px;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 20px;
         }
-        
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
+        .eyebrow::after { content: ""; width: 48px; height: 1px; background: var(--accent); opacity: 0.6; }
+
+        .section-title { font-size: clamp(30px, 4.5vw, 48px); max-width: 760px; }
+        .section-lede { margin-top: 18px; max-width: 620px; font-size: 16px; }
+        .section-head { margin-bottom: 56px; }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: var(--pad);
+            transition: border-color .25s, transform .25s;
+        }
+        .card:hover { border-color: var(--line-strong); }
+
+        .tag {
+            display: inline-block;
+            font-size: 11px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            border: 1px solid var(--line-strong);
+            border-radius: 999px;
+            padding: 4px 12px;
+        }
+
+        /* Every CTA ends with an arrow-line */
+        .cta {
+            display: inline-flex; align-items: center; gap: 14px;
+            font-family: var(--font-display);
+            font-weight: 500;
+            font-size: 15px;
+            color: var(--text);
+            padding: 14px 24px;
+            border-radius: 999px;
+            border: 1px solid var(--line-strong);
+            background: transparent;
+            cursor: pointer;
+            transition: border-color .25s, background .25s, color .25s;
+        }
+        .cta:hover { border-color: var(--accent); }
+        .cta.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+        .cta.primary:hover { background: #d63f87; }
+        .arrow {
+            position: relative;
+            width: 26px; height: 1px;
+            background: currentColor;
+            transition: width .25s;
+        }
+        .arrow::after {
+            content: "";
+            position: absolute; right: 0; top: -3px;
+            width: 7px; height: 7px;
+            border-top: 1px solid currentColor;
+            border-right: 1px solid currentColor;
+            transform: rotate(45deg);
+        }
+        .cta:hover .arrow { width: 36px; }
+
+        .callout {
+            border-left: 3px solid var(--accent);
+            background: var(--accent-soft);
+            padding: 18px 22px;
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+        .callout .label {
+            font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+            color: var(--accent); margin-bottom: 8px;
+        }
+        .callout p { color: var(--text); }
+
+        /* ---------- Nav ---------- */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 50;
+            transition: background .3s, border-color .3s;
+            border-bottom: 1px solid transparent;
+        }
+        nav.scrolled { background: rgba(16, 12, 26, 0.82); backdrop-filter: blur(12px); border-color: var(--line); }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+        .logo { font-family: var(--font-display); font-weight: 700; font-size: 20px; color: var(--text); letter-spacing: -0.03em; }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; align-items: center; gap: 32px; }
+        .nav-links a.link {
+            font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted);
+            transition: color .2s;
+        }
+        .nav-links a.link:hover { color: var(--text); }
+        .nav-links a.link b { color: var(--accent); font-weight: 400; margin-right: 6px; }
+        .nav-links .cta { padding: 10px 18px; font-size: 14px; }
+        .menu-btn {
+            display: none;
+            background: none; border: 1px solid var(--line-strong); color: var(--text);
+            border-radius: 999px; padding: 8px 16px;
+            font-family: var(--font-body); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+            cursor: pointer;
+        }
+        .mobile-menu { display: none; }
+
+        /* ---------- Hero ---------- */
+        .hero { padding: 170px 0 110px; border-top: 0; }
+        .hero h1 { font-size: clamp(42px, 7.5vw, 92px); max-width: 980px; font-weight: 700; }
+        .hero .lede { margin-top: 28px; max-width: 640px; font-size: 17px; }
+        .hero .actions { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 14px; }
+        .stats {
+            margin-top: 80px;
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid var(--line);
+        }
+        .stat { padding: 24px 0 0; }
+        .stat + .stat { padding-left: 24px; border-left: 1px solid var(--line); }
+        .stat .num { font-family: var(--font-display); font-size: clamp(30px, 4vw, 44px); font-weight: 600; color: var(--text); letter-spacing: -0.03em; }
+        .stat .lbl { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--faint); margin-top: 4px; }
+
+        /* ---------- About ---------- */
+        .about-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 64px; align-items: start; }
+        .about-body p + p { margin-top: 18px; }
+        .about-body .callout { margin-top: 32px; }
+
+        /* ---------- Expertise ---------- */
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
+        .skill .idx { font-size: 12px; letter-spacing: 0.2em; color: var(--accent); }
+        .skill h3 { font-size: 22px; margin: 14px 0 12px; }
+        .skill p { font-size: 14px; }
+        .skill ul { list-style: none; padding: 18px 0 0; margin: 18px 0 0; border-top: 1px solid var(--line); }
+        .skill li { font-size: 13px; color: var(--text); display: flex; gap: 10px; }
+        .skill li + li { margin-top: 6px; }
+        .skill li::before { content: "→"; color: var(--accent); }
+        .tools { margin-top: 48px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+        .tools .label { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--faint); margin-right: 8px; }
+
+        /* ---------- Experience mosaic ---------- */
+        .timeline { position: relative; }
+        .timeline::before {
+            content: ""; position: absolute; left: 6px; top: 8px; bottom: 8px;
+            width: 1px; background: var(--line-strong);
+        }
+        .role { position: relative; padding-left: 40px; }
+        .role + .role { margin-top: 56px; }
+        .role .dot {
+            position: absolute; left: 0; top: 6px;
+            width: 13px; height: 13px; border-radius: 50%;
+            background: var(--bg); border: 2px solid var(--faint);
+        }
+        .role.current .dot { border-color: var(--accent); background: var(--accent); box-shadow: 0 0 0 5px var(--accent-soft); }
+        .mosaic { display: grid; grid-template-columns: 5fr 7fr; gap: var(--gap); }
+        .brief .when { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--faint); }
+        .brief h3 { font-size: 26px; margin: 10px 0 4px; }
+        .brief .org { font-family: var(--font-display); color: var(--accent); font-style: italic; font-size: 18px; }
+        .brief p { margin-top: 14px; font-size: 14px; }
+        .wins { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
+        .win h4 { font-size: 15px; margin-bottom: 8px; }
+        .win p { font-size: 13px; line-height: 1.6; }
+        .win.wide { grid-column: 1 / -1; }
+
+        .awards { margin-top: 72px; }
+        .awards .head { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+        .award .k { font-size: 11px; letter-spacing: 0.2em; color: var(--faint); }
+        .award h4 { font-size: 18px; margin: 10px 0 8px; }
+        .award p { font-size: 13px; }
+
+        /* ---------- Education ---------- */
+        .edu-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: var(--gap); }
+        .edu .when { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--faint); }
+        .edu h3 { font-size: 22px; margin: 12px 0 6px; }
+        .edu h4 { font-size: 16px; margin-bottom: 10px; }
+        .edu .sub { color: var(--text); }
+        .edu p { font-size: 13px; }
+        .edu .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+
+        /* ---------- Contact ---------- */
+        .contact-card {
+            background: linear-gradient(140deg, var(--surface-2), var(--surface));
+            border: 1px solid var(--line-strong);
+            border-radius: 22px;
+            padding: clamp(28px, 6vw, 64px);
+            position: relative; overflow: hidden;
+        }
+        .contact-card::after {
+            content: ""; position: absolute; right: -120px; bottom: -160px;
+            width: 380px; height: 380px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(235, 81, 155, 0.28), transparent 65%);
+            pointer-events: none;
+        }
+        .contact-card h2 { font-size: clamp(32px, 5vw, 58px); max-width: 760px; }
+        .contact-card .lede { margin-top: 18px; max-width: 560px; font-size: 16px; }
+        .contact-card .actions { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 14px; position: relative; z-index: 1; }
+        .channels { margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); position: relative; z-index: 1; }
+        .channel { border-top: 1px solid var(--line-strong); padding-top: 16px; }
+        .channel .k { font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--faint); }
+        .channel a { display: block; margin-top: 6px; color: var(--text); font-family: var(--font-display); font-size: 16px; word-break: break-word; transition: color .2s; }
+        .channel a:hover { color: var(--accent); }
+
+        footer { padding: 32px 0 48px; }
+        footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--faint); }
+
+        /* ---------- Motion ---------- */
+        .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+        .reveal.in { opacity: 1; transform: none; }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .reveal { opacity: 1; transform: none; transition: none; }
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 900px) {
+            .about-grid, .mosaic { grid-template-columns: 1fr; gap: 32px; }
+            .grid-3 { grid-template-columns: 1fr; }
+            .edu-grid { grid-template-columns: 1fr 1fr; }
+            .edu-grid .edu:first-child { grid-column: 1 / -1; }
+            .channels { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 760px) {
+            .nav-links { display: none; }
+            .menu-btn { display: inline-block; }
+            .mobile-menu.open {
+                display: flex; flex-direction: column;
+                background: rgba(16, 12, 26, 0.97); border-top: 1px solid var(--line);
+                padding: 12px 24px 24px;
             }
+            .mobile-menu a {
+                padding: 14px 0; border-bottom: 1px solid var(--line);
+                font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text);
+            }
+            .mobile-menu a b { color: var(--accent); font-weight: 400; margin-right: 10px; }
+            section { padding: 80px 0; }
+            .hero { padding: 130px 0 80px; }
+            .wrap { padding: 0 16px; }
+            .wins { grid-template-columns: 1fr; }
+            .edu-grid { grid-template-columns: 1fr; }
+            .stats { grid-template-columns: 1fr; }
+            .stat + .stat { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); margin-top: 24px; }
         }
-        
-        .delay-100 { animation-delay: 100ms; }
-        .delay-200 { animation-delay: 200ms; }
-        .delay-300 { animation-delay: 300ms; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
+<body>
 
-    <nav class="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b border-slate-200 shadow-sm transition-all duration-300" id="navbar">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="text-xl font-bold tracking-tighter text-slate-900 group">
-                        Nisha<span class="text-brand-500">Verma</span>
-                        <span class="block text-xs font-medium text-slate-500 tracking-widest uppercase mt-0.5">Product Manager</span>
-                    </a>
-                </div>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#about" class="text-slate-600 hover:text-brand-600 text-sm font-medium transition-colors">About</a>
-                    <a href="#expertise" class="text-slate-600 hover:text-brand-600 text-sm font-medium transition-colors">Expertise</a>
-                    <a href="#experience" class="text-slate-600 hover:text-brand-600 text-sm font-medium transition-colors">Experience</a>
-                    <a href="#education" class="text-slate-600 hover:text-brand-600 text-sm font-medium transition-colors">Education</a>
-                    <a href="#contact" class="bg-slate-900 text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-brand-600 transition-colors shadow-md">Let's Talk</a>
-                </div>
-
-                <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-slate-900 focus:outline-none">
-                        <i class="fas fa-bars text-2xl"></i>
-                    </button>
-                </div>
+    <nav id="navbar">
+        <div class="wrap nav-inner">
+            <a href="#" class="logo">Nisha Verma<span>.</span></a>
+            <div class="nav-links">
+                <a href="#about" class="link"><b>01</b>About</a>
+                <a href="#expertise" class="link"><b>02</b>Expertise</a>
+                <a href="#experience" class="link"><b>03</b>Experience</a>
+                <a href="#education" class="link"><b>04</b>Education</a>
+                <a href="#contact" class="cta">Let's talk <span class="arrow"></span></a>
             </div>
+            <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
         </div>
-        
-        <!-- Mobile Menu Panel -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 shadow-lg absolute w-full">
-            <div class="px-4 pt-2 pb-6 space-y-1">
-                <a href="#about" class="block px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-md">About</a>
-                <a href="#expertise" class="block px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-md">Expertise</a>
-                <a href="#experience" class="block px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-md">Experience</a>
-                <a href="#education" class="block px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-md">Education</a>
-                <a href="#contact" class="block px-3 py-3 text-base font-medium text-brand-600 hover:bg-brand-50 rounded-md">Contact</a>
-            </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#about"><b>01</b>About</a>
+            <a href="#expertise"><b>02</b>Expertise</a>
+            <a href="#experience"><b>03</b>Experience</a>
+            <a href="#education"><b>04</b>Education</a>
+            <a href="#contact"><b>05</b>Contact</a>
         </div>
     </nav>
 
-    <section class="pt-32 pb-20 md:pt-40 md:pb-28 px-4 overflow-hidden relative">
-        <!-- Decorative background elements -->
-        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-brand-100 opacity-50 blur-3xl -z-10"></div>
-        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-blue-100 opacity-50 blur-3xl -z-10"></div>
-
-        <div class="max-w-4xl mx-auto text-center fade-in-up">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-100 text-brand-600 text-xs font-semibold uppercase tracking-wider mb-6">
-                <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
-                EdTech Specialist & Product Enthusiast
-            </div>
-            
-            <h1 class="text-4xl md:text-6xl font-bold text-slate-900 tracking-tight leading-tight mb-6">
-                Building <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-blue-600">engaging</span> learning experiences that scale.
-            </h1>
-            
-            <p class="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-                I am Nisha Verma, an EdTech Specialist transitioning into Product Management. I combine pedagogical expertise with data-driven insights to develop impactful K-8 educational products that drive student engagement and outcomes.
+    <!-- 00 Hero -->
+    <header class="hero">
+        <div class="wrap">
+            <div class="eyebrow reveal">EdTech Specialist &amp; Product Manager</div>
+            <h1 class="reveal">Building <em>engaging</em> learning experiences that scale.</h1>
+            <p class="lede reveal">
+                I'm Nisha Verma, an EdTech Specialist transitioning into Product Management. I combine pedagogical expertise with data-driven insights to develop impactful K-8 educational products that drive student engagement and outcomes.
             </p>
-            
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#experience" class="bg-slate-900 text-white px-8 py-3.5 rounded-full font-medium hover:bg-brand-600 hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2">
-                    View My Work <i class="fas fa-arrow-down text-sm"></i>
-                </a>
-                <a href="#contact" class="bg-white text-slate-700 border border-slate-200 px-8 py-3.5 rounded-full font-medium hover:bg-slate-50 hover:border-slate-300 transition-all duration-300">
-                    Get in Touch
-                </a>
+            <div class="actions reveal">
+                <a href="#experience" class="cta primary">View my work <span class="arrow"></span></a>
+                <a href="#contact" class="cta">Get in touch <span class="arrow"></span></a>
             </div>
-            
-            <div class="mt-16 pt-8 border-t border-slate-200 flex flex-wrap justify-center gap-x-12 gap-y-6 opacity-70">
-                <div class="flex flex-col items-center">
-                    <span class="text-2xl font-bold text-slate-900">300+</span>
-                    <span class="text-sm text-slate-500 font-medium">Students Impacted</span>
-                </div>
-                <div class="flex flex-col items-center">
-                    <span class="text-2xl font-bold text-slate-900">6+</span>
-                    <span class="text-sm text-slate-500 font-medium">Years Experience</span>
-                </div>
-                <div class="flex flex-col items-center">
-                    <span class="text-2xl font-bold text-slate-900">100%</span>
-                    <span class="text-sm text-slate-500 font-medium">User Centricity</span>
-                </div>
+            <div class="stats reveal">
+                <div class="stat"><div class="num">300+</div><div class="lbl">Students impacted</div></div>
+                <div class="stat"><div class="num">6+</div><div class="lbl">Years experience</div></div>
+                <div class="stat"><div class="num">100+</div><div class="lbl">Live sessions delivered</div></div>
             </div>
         </div>
-    </section>
+    </header>
 
-    <section id="about" class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="fade-in-up">
-                    <!-- Placeholder for professional photo or abstract illustration -->
-                    <div class="relative rounded-2xl overflow-hidden aspect-square md:aspect-[4/3] bg-slate-100 shadow-inner group">
-                        <img src="https://placehold.co/800x600/e2e8f0/64748b?text=Professional+Portrait" alt="Nisha Verma" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-2xl"></div>
-                    </div>
-                </div>
-                
-                <div class="fade-in-up delay-100">
-                    <h2 class="text-3xl font-bold text-slate-900 mb-6">From Educator to <br/>Product Thinker</h2>
-                    <p class="text-slate-600 mb-5 leading-relaxed">
-                        My journey didn't start in a tech hub; it started in the virtual classroom. As a Mathematics Facilitator, I've spent years observing how students interact with digital learning environments. I've seen firsthand where they engage, where they struggle, and what causes churn.
-                    </p>
-                    <p class="text-slate-600 mb-6 leading-relaxed">
-                        This frontline experience has cultivated a deep empathy for the end-user (students and parents). I approach Product Management not just as building features, but as solving core educational problems through continuous assessment-driven iteration, structured content delivery, and clear communication.
-                    </p>
-                    
-                    <div class="bg-slate-50 rounded-xl p-6 border border-slate-100">
-                        <h3 class="font-semibold text-slate-900 mb-3 flex items-center gap-2">
-                            <i class="fas fa-bullseye text-brand-500"></i> My Product Philosophy
-                        </h3>
-                        <p class="text-sm text-slate-600 italic">
-                            "A great EdTech product doesn't just digitize traditional learning; it leverages technology to provide differentiated, conceptual teaching that scales without losing the human touch."
-                        </p>
-                    </div>
-                </div>
+    <!-- 01 About -->
+    <section id="about">
+        <div class="wrap about-grid">
+            <div class="reveal">
+                <div class="eyebrow">01 &nbsp; About</div>
+                <h2 class="section-title">From educator to <em>product thinker</em>.</h2>
             </div>
-        </div>
-    </section>
-
-    <section id="expertise" class="py-20 bg-slate-50 relative">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-up">
-                <h2 class="text-sm font-bold tracking-widest text-brand-600 uppercase mb-3">Area of Expertise</h2>
-                <h3 class="text-3xl md:text-4xl font-bold text-slate-900">Skills That Drive Product Success</h3>
-                <p class="mt-4 text-slate-600">Bridging the gap between educational content delivery and scalable tech solutions.</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Skill 1 -->
-                <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-md hover:border-brand-100 transition-all duration-300 fade-in-up">
-                    <div class="w-12 h-12 bg-brand-50 text-brand-600 rounded-xl flex items-center justify-center text-xl mb-6">
-                        <i class="fas fa-users-cog"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-slate-900 mb-3">User-Centric Design</h4>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                        Translating deep understanding of diverse learner needs (K-10) into structured learning materials and intuitive virtual instruction environments.
-                    </p>
-                    <ul class="text-sm text-slate-500 space-y-2">
-                        <li class="flex items-start gap-2"><i class="fas fa-check text-brand-500 mt-1 text-xs"></i> Conceptual Teaching Design</li>
-                        <li class="flex items-start gap-2"><i class="fas fa-check text-brand-500 mt-1 text-xs"></i> Differentiated Instruction</li>
-                    </ul>
-                </div>
-
-                <!-- Skill 2 -->
-                <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-md hover:border-brand-100 transition-all duration-300 fade-in-up delay-100">
-                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-xl mb-6">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-slate-900 mb-3">Data-Driven Iteration</h4>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                        Tracking student performance through regular assessments to inform lesson content development and measure engagement metrics.
-                    </p>
-                    <ul class="text-sm text-slate-500 space-y-2">
-                        <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-1 text-xs"></i> Progress Monitoring</li>
-                        <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-1 text-xs"></i> Assessment-driven Tracking</li>
-                    </ul>
-                </div>
-
-                <!-- Skill 3 -->
-                <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-md hover:border-brand-100 transition-all duration-300 fade-in-up delay-200">
-                    <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center text-xl mb-6">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-slate-900 mb-3">Stakeholder Management</h4>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                        Building strong relationships across learning environments and maintaining clear communication channels with crucial user groups.
-                    </p>
-                    <ul class="text-sm text-slate-500 space-y-2">
-                        <li class="flex items-start gap-2"><i class="fas fa-check text-purple-500 mt-1 text-xs"></i> Parent Communication</li>
-                        <li class="flex items-start gap-2"><i class="fas fa-check text-purple-500 mt-1 text-xs"></i> Cross-cohort Engagement</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Tools & Platforms -->
-            <div class="mt-16 text-center fade-in-up delay-300">
-                <p class="text-sm font-semibold text-slate-500 mb-6 uppercase tracking-wider">Tools & Platforms I work with</p>
-                <div class="flex flex-wrap justify-center gap-3">
-                    <span class="px-4 py-2 bg-white border border-slate-200 rounded-full text-sm text-slate-700 shadow-sm flex items-center gap-2"><i class="fas fa-chalkboard-teacher text-slate-400"></i> Maverick LMS</span>
-                    <span class="px-4 py-2 bg-white border border-slate-200 rounded-full text-sm text-slate-700 shadow-sm flex items-center gap-2"><i class="fas fa-video text-blue-500"></i> Zoom</span>
-                    <span class="px-4 py-2 bg-white border border-slate-200 rounded-full text-sm text-slate-700 shadow-sm flex items-center gap-2"><i class="fas fa-video text-green-500"></i> Google Meet</span>
-                    <span class="px-4 py-2 bg-white border border-slate-200 rounded-full text-sm text-slate-700 shadow-sm flex items-center gap-2"><i class="fas fa-pen-nib text-purple-500"></i> Digital Whiteboards</span>
-                    <span class="px-4 py-2 bg-white border border-slate-200 rounded-full text-sm text-slate-700 shadow-sm flex items-center gap-2"><i class="fab fa-microsoft text-blue-600"></i> MS Office Suite</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="experience" class="py-20 bg-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-16 fade-in-up">
-                <h2 class="text-sm font-bold tracking-widest text-brand-600 uppercase mb-3">Work Experience</h2>
-                <h3 class="text-3xl font-bold text-slate-900">My Professional Journey</h3>
-            </div>
-
-            <div class="relative border-l-2 border-slate-200 ml-3 md:ml-6 space-y-12">
-                
-                <!-- Bhanzu Role -->
-                <div class="relative pl-8 md:pl-12 fade-in-up">
-                    <div class="absolute -left-[9px] top-1 h-4 w-4 rounded-full bg-brand-500 ring-4 ring-white"></div>
-                    
-                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-2 gap-2">
-                        <h4 class="text-xl font-bold text-slate-900">Math Trainer <span class="text-slate-400 font-normal mx-2">|</span> <span class="text-brand-600">Bhanzu</span></h4>
-                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-800 self-start md:self-auto">
-                            Sept 2025 - Present
-                        </span>
-                    </div>
-                    
-                    <p class="text-sm font-medium text-slate-500 mb-4">Driving product adoption through engaging delivery for UKG-Grade 9 global cohorts.</p>
-                    
-                    <div class="bg-slate-50 rounded-xl p-6 border border-slate-100">
-                        <h5 class="text-sm font-bold text-slate-900 mb-3 uppercase tracking-wider">Product & Execution Impact</h5>
-                        <ul class="space-y-3">
-                            <li class="flex items-start">
-                                <i class="fas fa-arrow-right text-brand-500 mt-1 mr-3 text-sm"></i>
-                                <span class="text-slate-600 text-sm"><strong>Scale & Engagement:</strong> Delivered 100+ live online sessions, ensuring consistent high engagement across diverse global student cohorts.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-arrow-right text-brand-500 mt-1 mr-3 text-sm"></i>
-                                <span class="text-slate-600 text-sm"><strong>Content Strategy:</strong> Designed and executed structured lesson plans, adapting teaching methodologies for varying learning levels to maximize comprehension.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-arrow-right text-brand-500 mt-1 mr-3 text-sm"></i>
-                                <span class="text-slate-600 text-sm"><strong>Metrics & Tracking:</strong> Actively tracked user (student) performance through regular assessments, utilizing data for progress monitoring and targeted intervention.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-arrow-right text-brand-500 mt-1 mr-3 text-sm"></i>
-                                <span class="text-slate-600 text-sm"><strong>UX Improvement:</strong> Simplified complex mathematical concepts using real-life applications, significantly improving the 'user experience' and subject understanding.</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Independent Tutor Role -->
-                <div class="relative pl-8 md:pl-12 fade-in-up delay-100">
-                    <div class="absolute -left-[9px] top-1 h-4 w-4 rounded-full bg-slate-300 ring-4 ring-white"></div>
-                    
-                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-2 gap-2">
-                        <h4 class="text-xl font-bold text-slate-900">Independent Mathematics Tutor</h4>
-                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-800 self-start md:self-auto">
-                            Feb 2019 - Dec 2025
-                        </span>
-                    </div>
-                    
-                    <p class="text-sm font-medium text-slate-500 mb-4">Building foundational skills and managing end-to-end learning journeys.</p>
-                    
-                    <div class="bg-white rounded-xl p-6 border border-slate-100 shadow-sm">
-                        <ul class="space-y-3">
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-slate-400 mt-1 mr-3 text-sm"></i>
-                                <span class="text-slate-600 text-sm">Provided individualized instruction to <strong>200+ learners</strong>, demonstrating strong customer acquisition and retention over 6 years.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-slate-400 mt-1 mr-3 text-sm"></i>
-                                <span class="text-slate-600 text-sm">Strengthened foundational skills and measurable academic performance through tailored approaches.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-slate-400 mt-1 mr-3 text-sm"></i>
-                                <span class="text-slate-600 text-sm">Successfully managed cross-channel delivery, building effective learning relationships in both in-person (offline) and virtual environments.</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-            </div>
-            
-            <!-- Key Achievements Highlight -->
-            <div class="mt-16 bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-8 md:p-10 text-white shadow-xl fade-in-up delay-200">
-                <h4 class="text-xl font-bold mb-6 flex items-center gap-3">
-                    <i class="fas fa-trophy text-yellow-400"></i> Key Achievements Summary
-                </h4>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="flex gap-4">
-                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-                            <i class="fas fa-chart-pie text-brand-400"></i>
-                        </div>
-                        <div>
-                            <h5 class="font-semibold text-white/90">Performance Improvement</h5>
-                            <p class="text-sm text-slate-300 mt-1">Consistently improved student outcomes through targeted teaching and data-backed assessments.</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4">
-                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-                            <i class="fas fa-layer-group text-brand-400"></i>
-                        </div>
-                        <div>
-                            <h5 class="font-semibold text-white/90">Content Architecture</h5>
-                            <p class="text-sm text-slate-300 mt-1">Designed structured learning materials essential for effective concept building.</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4 md:col-span-2">
-                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-                            <i class="fas fa-sync-alt text-brand-400"></i>
-                        </div>
-                        <div>
-                            <h5 class="font-semibold text-white/90">Adaptability & Proven Effectiveness</h5>
-                            <p class="text-sm text-slate-300 mt-1">Maintained strong learning outcomes by seamlessly adapting strategies for diverse learners across both offline and digital platforms.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="education" class="py-20 bg-slate-50 border-t border-slate-200">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row gap-12">
-                
-                <div class="md:w-1/3 fade-in-up">
-                    <h2 class="text-sm font-bold tracking-widest text-brand-600 uppercase mb-3">Academic Background</h2>
-                    <h3 class="text-3xl font-bold text-slate-900 mb-4">Education & Certifications</h3>
-                    <p class="text-slate-600">A foundation in language and communication, crucial for clear product documentation and stakeholder engagement.</p>
-                </div>
-                
-                <div class="md:w-2/3 space-y-6 fade-in-up delay-100">
-                    <!-- Degree -->
-                    <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 group hover:border-brand-200 transition-colors">
-                        <div>
-                            <h4 class="text-xl font-bold text-slate-900 group-hover:text-brand-600 transition-colors">Bachelor's in English</h4>
-                            <p class="text-slate-600 font-medium">Dr. Shyama Prasad University, Ranchi</p>
-                            <p class="text-sm text-slate-500 mt-2">Honors in English Language • Final Score: 69%</p>
-                        </div>
-                        <div class="sm:text-right">
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-600">
-                                Aug 2016 - June 2019
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <!-- Certifications & Languages -->
-                    <div class="grid sm:grid-cols-2 gap-6">
-                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-                            <h5 class="font-bold text-slate-900 mb-3 flex items-center gap-2">
-                                <i class="fas fa-certificate text-brand-500"></i> Certifications
-                            </h5>
-                            <p class="text-sm text-slate-600 leading-relaxed">
-                                Certificate in Computer Fundamentals <br>
-                                <span class="text-slate-400 text-xs">(MS Office, Internet Applications)</span>
-                            </p>
-                        </div>
-                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-                            <h5 class="font-bold text-slate-900 mb-3 flex items-center gap-2">
-                                <i class="fas fa-language text-brand-500"></i> Languages
-                            </h5>
-                            <div class="flex gap-2 mt-2">
-                                <span class="px-3 py-1 bg-slate-100 text-slate-700 text-sm rounded-md font-medium">English</span>
-                                <span class="px-3 py-1 bg-slate-100 text-slate-700 text-sm rounded-md font-medium">Hindi</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-    </section>
-
-    <footer id="contact" class="bg-slate-900 pt-20 pb-10 text-slate-300">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-brand-600 rounded-3xl p-8 md:p-12 mb-16 text-center shadow-2xl relative overflow-hidden fade-in-up">
-                <!-- Decorative background elements -->
-                <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-                <div class="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3"></div>
-                
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 relative z-10">Ready to build better learning experiences?</h2>
-                <p class="text-brand-100 mb-8 max-w-2xl mx-auto relative z-10">
-                    I am actively seeking Product Management roles where I can leverage my EdTech experience to create impactful, user-centric products.
+            <div class="about-body reveal">
+                <p>
+                    My journey didn't start in a tech hub; it started in the virtual classroom. As a Mathematics Facilitator, I've spent years observing how students interact with digital learning environments. I've seen firsthand where they engage, where they struggle, and what causes churn.
                 </p>
-                <div class="flex flex-col sm:flex-row justify-center gap-4 relative z-10">
-                    <a href="mailto:nishaverma13feb@gmail.com" class="bg-white text-brand-600 px-8 py-3 rounded-full font-bold hover:bg-slate-50 hover:shadow-lg transition-all duration-300">
-                        <i class="fas fa-envelope mr-2"></i> Email Me
-                    </a>
-                    <button onclick="copyEmail()" id="copyBtn" class="bg-brand-700/50 text-white border border-brand-400 px-8 py-3 rounded-full font-medium hover:bg-brand-700 transition-all duration-300">
-                        <i class="far fa-copy mr-2"></i> Copy Email
-                    </button>
+                <p>
+                    This frontline experience has cultivated a deep empathy for the end-user (students and parents). I approach Product Management not just as building features, but as solving core educational problems through continuous assessment-driven iteration, structured content delivery, and clear communication.
+                </p>
+                <div class="callout">
+                    <div class="label">Product philosophy</div>
+                    <p>A great EdTech product doesn't just digitize traditional learning; it leverages technology to provide differentiated, conceptual teaching that scales <em>without losing the human touch</em>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 02 Expertise -->
+    <section id="expertise">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <div class="eyebrow">02 &nbsp; Expertise</div>
+                <h2 class="section-title">Skills that drive <em>product</em> success.</h2>
+                <p class="section-lede">Bridging the gap between educational content delivery and scalable tech solutions.</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="card skill reveal">
+                    <div class="idx">A</div>
+                    <h3>User-centric design</h3>
+                    <p>Translating deep understanding of diverse learner needs (K-10) into structured learning materials and intuitive virtual instruction environments.</p>
+                    <ul>
+                        <li>Conceptual teaching design</li>
+                        <li>Differentiated instruction</li>
+                    </ul>
+                </div>
+                <div class="card skill reveal">
+                    <div class="idx">B</div>
+                    <h3>Data-driven iteration</h3>
+                    <p>Tracking student performance through regular assessments to inform lesson content development and measure engagement metrics.</p>
+                    <ul>
+                        <li>Progress monitoring</li>
+                        <li>Assessment-driven tracking</li>
+                    </ul>
+                </div>
+                <div class="card skill reveal">
+                    <div class="idx">C</div>
+                    <h3>Stakeholder management</h3>
+                    <p>Building strong relationships across learning environments and maintaining clear communication channels with crucial user groups.</p>
+                    <ul>
+                        <li>Parent communication</li>
+                        <li>Cross-cohort engagement</li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-10 items-center border-b border-slate-800 pb-10 mb-10">
-                <div>
-                    <a href="#" class="text-2xl font-bold tracking-tighter text-white inline-block mb-4">
-                        Nisha<span class="text-brand-500">Verma</span>
-                    </a>
-                    <p class="text-sm text-slate-400 max-w-sm leading-relaxed">
-                        Mathematics Facilitator & EdTech Specialist transitioning to Product Management. Focused on concept clarity, problem-solving, and scalable learning solutions.
-                    </p>
+            <div class="tools reveal">
+                <span class="label">Tools &amp; platforms</span>
+                <span class="tag">Maverick LMS</span>
+                <span class="tag">Zoom</span>
+                <span class="tag">Google Meet</span>
+                <span class="tag">Digital whiteboards</span>
+                <span class="tag">MS Office Suite</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 03 Experience -->
+    <section id="experience">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <div class="eyebrow">03 &nbsp; Experience</div>
+                <h2 class="section-title">Where I've <em>worked</em>.</h2>
+                <p class="section-lede">Achievements sit next to each role, not below it.</p>
+            </div>
+
+            <div class="timeline">
+                <div class="role current reveal">
+                    <span class="dot"></span>
+                    <div class="mosaic">
+                        <div class="brief">
+                            <div class="when">Sept 2025 — Present</div>
+                            <h3>Math Trainer</h3>
+                            <div class="org">Bhanzu</div>
+                            <p>Driving product adoption through engaging delivery for UKG–Grade 9 global cohorts.</p>
+                        </div>
+                        <div class="wins">
+                            <div class="card win">
+                                <h4>Scale &amp; engagement</h4>
+                                <p>Delivered 100+ live online sessions, ensuring consistently high engagement across diverse global student cohorts.</p>
+                            </div>
+                            <div class="card win">
+                                <h4>Content strategy</h4>
+                                <p>Designed and executed structured lesson plans, adapting methodologies for varying learning levels to maximize comprehension.</p>
+                            </div>
+                            <div class="card win">
+                                <h4>Metrics &amp; tracking</h4>
+                                <p>Tracked student performance through regular assessments, using the data for progress monitoring and targeted intervention.</p>
+                            </div>
+                            <div class="card win">
+                                <h4>UX improvement</h4>
+                                <p>Simplified complex mathematical concepts using real-life applications, improving the learner experience and subject understanding.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="flex flex-col md:items-end">
-                    <h3 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Connect</h3>
-                    <div class="space-y-3">
-                        <a href="mailto:nishaverma13feb@gmail.com" class="flex items-center gap-3 text-slate-400 hover:text-brand-400 transition-colors group">
-                            <div class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-brand-500/20">
-                                <i class="fas fa-envelope text-sm"></i>
+
+                <div class="role reveal">
+                    <span class="dot"></span>
+                    <div class="mosaic">
+                        <div class="brief">
+                            <div class="when">Feb 2019 — Dec 2025</div>
+                            <h3>Independent Mathematics Tutor</h3>
+                            <div class="org">Self-employed</div>
+                            <p>Building foundational skills and managing end-to-end learning journeys.</p>
+                        </div>
+                        <div class="wins">
+                            <div class="card win">
+                                <h4>200+ learners</h4>
+                                <p>Individualized instruction with strong acquisition and retention over six years.</p>
                             </div>
-                            nishaverma13feb@gmail.com
-                        </a>
-                        <a href="tel:+916205709593" class="flex items-center gap-3 text-slate-400 hover:text-brand-400 transition-colors group">
-                            <div class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-brand-500/20">
-                                <i class="fas fa-phone-alt text-sm"></i>
+                            <div class="card win">
+                                <h4>Measurable outcomes</h4>
+                                <p>Strengthened foundational skills and academic performance through tailored approaches.</p>
                             </div>
-                            +91-6205709593
-                        </a>
-                        <a href="https://www.linkedin.com/in/nisha-verma-b0aaab400" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-slate-400 hover:text-brand-400 transition-colors group">
-                            <div class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-brand-500/20">
-                                <i class="fab fa-linkedin-in text-sm"></i>
+                            <div class="card win wide">
+                                <h4>Cross-channel delivery</h4>
+                                <p>Built effective learning relationships in both in-person (offline) and virtual environments.</p>
                             </div>
-                            LinkedIn Profile
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="flex flex-col md:flex-row justify-between items-center text-xs text-slate-500">
-                <p>&copy; <span id="currentYear"></span> Nisha Verma. All rights reserved.</p>
-                <p class="mt-2 md:mt-0">Designed for Product Management</p>
+            <div class="awards">
+                <div class="head reveal">Key achievements</div>
+                <div class="grid-3">
+                    <div class="card award reveal">
+                        <div class="k">01</div>
+                        <h4>Performance improvement</h4>
+                        <p>Consistently improved student outcomes through targeted teaching and data-backed assessments.</p>
+                    </div>
+                    <div class="card award reveal">
+                        <div class="k">02</div>
+                        <h4>Content architecture</h4>
+                        <p>Designed structured learning materials essential for effective concept building.</p>
+                    </div>
+                    <div class="card award reveal">
+                        <div class="k">03</div>
+                        <h4>Adaptability</h4>
+                        <p>Maintained strong outcomes by adapting strategies for diverse learners across offline and digital platforms.</p>
+                    </div>
+                </div>
             </div>
+        </div>
+    </section>
+
+    <!-- 04 Education -->
+    <section id="education">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <div class="eyebrow">04 &nbsp; Education</div>
+                <h2 class="section-title">What I <em>studied</em>.</h2>
+                <p class="section-lede">A foundation in language and communication — crucial for clear product documentation and stakeholder engagement.</p>
+            </div>
+            <div class="edu-grid">
+                <div class="card edu reveal">
+                    <div class="when">Aug 2016 — June 2019</div>
+                    <h3>Bachelor's in English</h3>
+                    <p class="sub">Dr. Shyama Prasad University, Ranchi</p>
+                    <p>Honours in English Language · Final score 69%</p>
+                </div>
+                <div class="card edu reveal">
+                    <div class="when">Certification</div>
+                    <h4 style="margin-top:12px">Computer Fundamentals</h4>
+                    <p>MS Office, Internet Applications</p>
+                </div>
+                <div class="card edu reveal">
+                    <div class="when">Languages</div>
+                    <div class="tags" style="margin-top:14px">
+                        <span class="tag">English</span>
+                        <span class="tag">Hindi</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 05 Contact -->
+    <section id="contact">
+        <div class="wrap">
+            <div class="eyebrow reveal">05 &nbsp; Contact</div>
+            <div class="contact-card reveal">
+                <h2>Ready to build <em>better</em> learning experiences?</h2>
+                <p class="lede">I'm actively seeking Product Management roles where I can leverage my EdTech experience to create impactful, user-centric products.</p>
+                <div class="actions">
+                    <a href="mailto:nishaverma13feb@gmail.com" class="cta primary">Email me <span class="arrow"></span></a>
+                    <button type="button" class="cta" id="copyBtn">Copy email <span class="arrow"></span></button>
+                    <a href="https://www.linkedin.com/in/nisha-verma-b0aaab400" target="_blank" rel="noopener noreferrer" class="cta">LinkedIn <span class="arrow"></span></a>
+                </div>
+                <div class="channels">
+                    <div class="channel"><div class="k">Email</div><a href="mailto:nishaverma13feb@gmail.com">nishaverma13feb@gmail.com</a></div>
+                    <div class="channel"><div class="k">Phone</div><a href="tel:+916205709593">+91-6205709593</a></div>
+                    <div class="channel"><div class="k">LinkedIn</div><a href="https://www.linkedin.com/in/nisha-verma-b0aaab400" target="_blank" rel="noopener noreferrer">nisha-verma</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="wrap">
+            <span>&copy; <span id="currentYear"></span> Nisha Verma</span>
+            <span>Mathematics Facilitator → Product Manager</span>
         </div>
     </footer>
 
     <script>
-        // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // Mobile Menu Toggle
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        const icon = btn.querySelector('i');
+        // Nav background on scroll
+        const nav = document.getElementById('navbar');
+        const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
 
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-            if(menu.classList.contains('hidden')){
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            } else {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            }
-        });
-
-        // Close mobile menu on link click
-        menu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('hidden');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            });
-        });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 20) {
-                nav.classList.add('shadow-md');
-                nav.classList.replace('py-4', 'py-2');
-            } else {
-                nav.classList.remove('shadow-md');
-                nav.classList.replace('py-2', 'py-4');
-            }
-        });
-
-        // Copy Email Function
-        function copyEmail() {
-            const email = "nishaverma13feb@gmail.com";
-            
-            // Create temporary textarea
-            const textArea = document.createElement("textarea");
-            textArea.value = email;
-            document.body.appendChild(textArea);
-            textArea.select();
-            
-            try {
-                document.execCommand('copy');
-                const btn = document.getElementById('copyBtn');
-                const originalHtml = btn.innerHTML;
-                
-                // Visual feedback
-                btn.innerHTML = '<i class="fas fa-check mr-2"></i> Copied!';
-                btn.classList.add('bg-green-600', 'border-green-500');
-                btn.classList.remove('bg-brand-700/50', 'border-brand-400');
-                
-                setTimeout(() => {
-                    btn.innerHTML = originalHtml;
-                    btn.classList.remove('bg-green-600', 'border-green-500');
-                    btn.classList.add('bg-brand-700/50', 'border-brand-400');
-                }, 2000);
-            } catch (err) {
-                console.error('Failed to copy text', err);
-            }
-            
-            document.body.removeChild(textArea);
-        }
-
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
+        // Mobile menu
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const setMenu = (open) => {
+            mobileMenu.classList.toggle('open', open);
+            menuBtn.setAttribute('aria-expanded', open);
+            menuBtn.textContent = open ? 'Close' : 'Menu';
+            if (open) nav.classList.add('scrolled'); else onScroll();
         };
+        menuBtn.addEventListener('click', () => setMenu(!mobileMenu.classList.contains('open')));
+        mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
 
-        const observer = new IntersectionObserver((entries, observer) => {
+        // Copy email
+        const copyBtn = document.getElementById('copyBtn');
+        copyBtn.addEventListener('click', async () => {
+            const email = 'nishaverma13feb@gmail.com';
+            try {
+                await navigator.clipboard.writeText(email);
+            } catch (e) {
+                const ta = document.createElement('textarea');
+                ta.value = email;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                ta.remove();
+            }
+            const original = copyBtn.innerHTML;
+            copyBtn.innerHTML = 'Copied! <span class="arrow"></span>';
+            setTimeout(() => { copyBtn.innerHTML = original; }, 2000);
+        });
+
+        // Reveal on scroll
+        const io = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Reset animation by triggering reflow if needed, though with forwards it stays
-                    entry.target.style.animationPlayState = 'running';
-                    observer.unobserve(entry.target);
+                    entry.target.classList.add('in');
+                    io.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
-
-        // Wait for DOM to load before observing
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initially pause animations for elements below the fold
-            document.querySelectorAll('.fade-in-up').forEach((el) => {
-                el.style.animationPlayState = 'paused';
-                observer.observe(el);
-            });
-            
-            // Trigger animation for elements already in viewport
-            setTimeout(() => {
-                 document.querySelectorAll('.fade-in-up').forEach((el) => {
-                     const rect = el.getBoundingClientRect();
-                     if(rect.top < window.innerHeight) {
-                         el.style.animationPlayState = 'running';
-                     }
-                 });
-            }, 100);
-        });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
     </script>
 </body>
 </html>
