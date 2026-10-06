@@ -212,6 +212,68 @@
         .tools { margin-top: 48px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
         .tools .label { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--faint); margin-right: 8px; }
 
+        /* ---------- Work (proof of work) ---------- */
+        .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
+        .filter {
+            font-family: var(--font-body);
+            font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+            color: var(--muted); background: transparent;
+            border: 1px solid var(--line-strong); border-radius: 999px;
+            padding: 8px 16px; cursor: pointer;
+            transition: color .2s, border-color .2s, background .2s;
+        }
+        .filter:hover { color: var(--text); }
+        .filter[aria-pressed="true"] { color: #fff; background: var(--accent); border-color: var(--accent); }
+        .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
+        .work-card {
+            display: flex; flex-direction: column; text-align: left;
+            font: inherit; color: inherit; cursor: pointer; width: 100%;
+        }
+        .work-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+        .work-card .type { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); }
+        .work-card h3 { font-size: 20px; margin: 12px 0 10px; }
+        .work-card p { font-size: 13px; line-height: 1.6; flex: 1; }
+        .work-card .meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+        .work-card .open {
+            margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line);
+            display: flex; align-items: center; gap: 12px;
+            font-family: var(--font-display); font-size: 14px; color: var(--text);
+        }
+        .work-card.template { border-style: dashed; }
+
+        /* Shared modal */
+        .modal {
+            position: fixed; inset: 0; z-index: 100;
+            display: none; align-items: flex-start; justify-content: center;
+            padding: 6vh 16px; overflow-y: auto;
+            background: rgba(8, 6, 14, 0.78); backdrop-filter: blur(6px);
+        }
+        .modal.open { display: flex; }
+        .modal-box {
+            position: relative; width: 100%; max-width: 760px;
+            background: var(--surface); border: 1px solid var(--line-strong);
+            border-radius: 18px; padding: clamp(22px, 4vw, 40px);
+        }
+        .modal-close {
+            position: absolute; top: 16px; right: 16px;
+            width: 36px; height: 36px; border-radius: 50%;
+            background: transparent; border: 1px solid var(--line-strong); color: var(--text);
+            font-size: 18px; line-height: 1; cursor: pointer;
+        }
+        .modal-close:hover { border-color: var(--accent); }
+        .modal .type { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); }
+        .modal h2 { font-size: clamp(26px, 4vw, 36px); margin: 12px 40px 14px 0; }
+        .modal .summary { font-size: 15px; }
+        .facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin: 28px 0; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+        .fact { background: var(--surface-2); padding: 14px 16px; }
+        .fact .k { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--faint); }
+        .fact .v { margin-top: 4px; color: var(--text); font-family: var(--font-display); font-size: 15px; line-height: 1.35; }
+        .modal-section + .modal-section { margin-top: 22px; }
+        .modal-section h4 { font-size: 17px; margin-bottom: 8px; }
+        .modal-section p, .modal-section li { font-size: 14px; }
+        .modal-section ul { margin: 0; padding-left: 18px; }
+        .modal .actions { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; }
+
         /* ---------- Experience mosaic ---------- */
         .timeline { position: relative; }
         .timeline::before {
@@ -289,6 +351,8 @@
         @media (max-width: 900px) {
             .about-grid, .mosaic { grid-template-columns: 1fr; gap: 32px; }
             .grid-3 { grid-template-columns: 1fr; }
+            .work-grid { grid-template-columns: 1fr 1fr; }
+            .facts { grid-template-columns: 1fr 1fr; }
             .edu-grid { grid-template-columns: 1fr 1fr; }
             .edu-grid .edu:first-child { grid-column: 1 / -1; }
             .channels { grid-template-columns: 1fr; }
@@ -310,6 +374,7 @@
             .hero { padding: 130px 0 80px; }
             .wrap { padding: 0 16px; }
             .wins { grid-template-columns: 1fr; }
+            .work-grid { grid-template-columns: 1fr; }
             .edu-grid { grid-template-columns: 1fr; }
             .stats { grid-template-columns: 1fr; }
             .stat + .stat { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); margin-top: 24px; }
@@ -323,19 +388,21 @@
             <a href="#" class="logo">Nisha Verma<span>.</span></a>
             <div class="nav-links">
                 <a href="#about" class="link"><b>01</b>About</a>
-                <a href="#expertise" class="link"><b>02</b>Expertise</a>
-                <a href="#experience" class="link"><b>03</b>Experience</a>
-                <a href="#education" class="link"><b>04</b>Education</a>
+                <a href="#work" class="link"><b>02</b>Work</a>
+                <a href="#expertise" class="link"><b>03</b>Expertise</a>
+                <a href="#experience" class="link"><b>04</b>Experience</a>
+                <a href="#education" class="link"><b>05</b>Education</a>
                 <a href="#contact" class="cta">Let's talk <span class="arrow"></span></a>
             </div>
             <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
         </div>
         <div class="mobile-menu" id="mobileMenu">
             <a href="#about"><b>01</b>About</a>
-            <a href="#expertise"><b>02</b>Expertise</a>
-            <a href="#experience"><b>03</b>Experience</a>
-            <a href="#education"><b>04</b>Education</a>
-            <a href="#contact"><b>05</b>Contact</a>
+            <a href="#work"><b>02</b>Work</a>
+            <a href="#expertise"><b>03</b>Expertise</a>
+            <a href="#experience"><b>04</b>Experience</a>
+            <a href="#education"><b>05</b>Education</a>
+            <a href="#contact"><b>06</b>Contact</a>
         </div>
     </nav>
 
@@ -348,7 +415,7 @@
                 I'm Nisha Verma, an EdTech Specialist transitioning into Product Management. I combine pedagogical expertise with data-driven insights to develop impactful K-8 educational products that drive student engagement and outcomes.
             </p>
             <div class="actions reveal">
-                <a href="#experience" class="cta primary">View my work <span class="arrow"></span></a>
+                <a href="#work" class="cta primary">View my work <span class="arrow"></span></a>
                 <a href="#contact" class="cta">Get in touch <span class="arrow"></span></a>
             </div>
             <div class="stats reveal">
@@ -381,11 +448,24 @@
         </div>
     </section>
 
-    <!-- 02 Expertise -->
+    <!-- 02 Work -->
+    <section id="work">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <div class="eyebrow">02 &nbsp; Work</div>
+                <h2 class="section-title">What I've <em>shipped</em>.</h2>
+                <p class="section-lede">Case studies, PRDs, teardowns and products I've built. Open any card for the full story.</p>
+            </div>
+            <div class="filters reveal" id="workFilters" role="group" aria-label="Filter work"></div>
+            <div class="work-grid" id="workGrid"></div>
+        </div>
+    </section>
+
+    <!-- 03 Expertise -->
     <section id="expertise">
         <div class="wrap">
             <div class="section-head reveal">
-                <div class="eyebrow">02 &nbsp; Expertise</div>
+                <div class="eyebrow">03 &nbsp; Expertise</div>
                 <h2 class="section-title">Skills that drive <em>product</em> success.</h2>
                 <p class="section-lede">Bridging the gap between educational content delivery and scalable tech solutions.</p>
             </div>
@@ -431,11 +511,11 @@
         </div>
     </section>
 
-    <!-- 03 Experience -->
+    <!-- 04 Experience -->
     <section id="experience">
         <div class="wrap">
             <div class="section-head reveal">
-                <div class="eyebrow">03 &nbsp; Experience</div>
+                <div class="eyebrow">04 &nbsp; Experience</div>
                 <h2 class="section-title">Where I've <em>worked</em>.</h2>
                 <p class="section-lede">Achievements sit next to each role, not below it.</p>
             </div>
@@ -521,11 +601,11 @@
         </div>
     </section>
 
-    <!-- 04 Education -->
+    <!-- 05 Education -->
     <section id="education">
         <div class="wrap">
             <div class="section-head reveal">
-                <div class="eyebrow">04 &nbsp; Education</div>
+                <div class="eyebrow">05 &nbsp; Education</div>
                 <h2 class="section-title">What I <em>studied</em>.</h2>
                 <p class="section-lede">A foundation in language and communication — crucial for clear product documentation and stakeholder engagement.</p>
             </div>
@@ -552,10 +632,10 @@
         </div>
     </section>
 
-    <!-- 05 Contact -->
+    <!-- 06 Contact -->
     <section id="contact">
         <div class="wrap">
-            <div class="eyebrow reveal">05 &nbsp; Contact</div>
+            <div class="eyebrow reveal">06 &nbsp; Contact</div>
             <div class="contact-card reveal">
                 <h2>Ready to build <em>better</em> learning experiences?</h2>
                 <p class="lede">I'm actively seeking Product Management roles where I can leverage my EdTech experience to create impactful, user-centric products.</p>
@@ -580,6 +660,20 @@
         </div>
     </footer>
 
+    <!-- Shared modal: every work card opens this -->
+    <div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-box">
+            <button type="button" class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+            <div class="type" id="modalType"></div>
+            <h2 id="modalTitle"></h2>
+            <p class="summary" id="modalSummary"></p>
+            <div class="facts" id="modalFacts"></div>
+            <div id="modalSections"></div>
+            <div class="actions" id="modalActions"></div>
+        </div>
+    </div>
+
+    <script src="projects.js"></script>
     <script>
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
