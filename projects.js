@@ -1,103 +1,71 @@
 /*
- * Proof-of-work data. Every card in the Work section and its modal are
- * generated from this list, so adding a project means adding one object.
+ * Project data for the Projects section. Each entry becomes a card in its
+ * group, and every card opens the same floating modal.
  *
- * type:     one of the keys in TYPES below (controls the filter + label)
- * facts:    exactly four { k, v } pairs, shown as the modal's 4-cell grid
- * sections: titled blocks in the modal; use `body` for a paragraph or
- *           `list` for bullet points
- * links:    CTAs at the bottom of the modal (PDF, live product, Figma, ...)
- * template: true marks a placeholder card; delete these once real work is in
+ * group:    'ai' (AI & me) or 'case' (Case studies)
+ * name:     big label on the card banner
+ * tagline:  short line on the card (shown in italics)
+ * intro:    2–3 lines on the card
+ * eyebrow:  small pink label above the modal title
+ * title:    modal heading
+ * summary:  modal intro paragraph
+ * facts:    { k, v } pairs shown as a 2-column grid
+ * sections: { heading, paras } or { heading, items }
+ *           paras: paragraphs, items: "+" bullet points
+ * pdf:      path or URL to the PDF (shows the PDF icon button)
+ * link:     live product URL (shows the link icon button)
+ *
+ * In any text, *word* renders as pink italics and **word** as bold.
  */
-const TYPES = {
-    case: 'Case study',
-    prd: 'PRD',
-    teardown: 'Teardown',
-    product: 'Product built',
-};
-
 const PROJECTS = [
     {
-        template: true,
-        type: 'case',
-        title: 'Your case study title',
-        summary: 'One or two lines: the user problem you found and what you proposed. Replace this template in projects.js.',
-        tags: ['EdTech', 'Research'],
+        group: 'ai',
+        name: 'OutLoud',
+        tagline: 'Speaking under pressure',
+        intro: 'A judgment-free voice AI coach for early-career job seekers who read and write English but freeze when they have to speak it live. Three practice modes: everyday, interview and workplace.',
+        eyebrow: 'AI product · OutLoud V2',
+        title: "Knowing English isn't the same as being able to speak it",
+        summary: 'OutLoud is built around a simple observation: many early-career job seekers can read and write English, but *freeze when they have to speak it live* — in interviews, meetings, or everyday conversations. The product removes the audience first, then makes practice specific to the situation.',
         facts: [
-            { k: 'Problem', v: 'What was broken' },
-            { k: 'Role', v: 'What you did' },
-            { k: 'Timeline', v: '2 weeks' },
-            { k: 'Outcome', v: 'Key result' },
+            { k: 'Type', v: 'AI speaking coach · self-initiated' },
+            { k: 'Format', v: 'Voice-first · mobile-first · 3 practice modes' },
+            { k: 'North star', v: 'Week-4 practice completion ≥40%' },
+            { k: 'The bet', v: 'More relevant practice will make speaking practice easier to repeat.' },
         ],
         sections: [
-            { heading: 'Context', body: 'Who the users are and why this problem matters.' },
-            { heading: 'Approach', list: ['User interviews / data you looked at', 'Options you considered', 'What you chose and why'] },
-            { heading: 'Impact', body: 'Metrics moved, or the metrics you would track.' },
+            {
+                heading: 'Intended vs actual',
+                paras: [
+                    '**Intended:** A private, free space to practise speaking without judgement.',
+                    "**Actual:** The product deliberately avoids turning English practice into another test. No scores. No accent correction. No punishment for fillers, pauses or common Indian English. Interview mode doesn't interrupt the user to correct them; feedback comes separately. Workplace practice adapts to the situation the user actually needs to handle.",
+                ],
+            },
+            {
+                heading: 'Fix the speaking gap',
+                items: [
+                    '**Make practice match the moment.** General conversation for everyday confidence. Interview mode adapts to the user\'s target role. Workplace mode practises situations such as presentations, meetings and client conversations.',
+                    '**Give feedback without turning it into a score.** Interview and Workplace users can request feedback during practice and receive up to two evidence-based improvement points.',
+                    '**Make privacy part of the product.** Conversation transcripts are discarded after each session. Only lightweight session statistics are retained.',
+                    '**Bring users back without nagging.** Users control their own email practice reminders rather than being pushed into streaks or engagement loops.',
+                ],
+            },
+            {
+                heading: 'The verdict',
+                paras: [
+                    "The product isn't trying to teach users more English. It's trying to give them *more chances to speak the English they already know* — before the moment when it actually matters.",
+                    'V1 showed that users came for interviews and workplace situations but were given only general conversation. V2 responds by turning one generic speaking partner into three context-specific practice experiences.',
+                ],
+            },
         ],
-        links: [{ label: 'Read the full case study', url: '#' }],
-    },
-    {
-        template: true,
-        type: 'prd',
-        title: 'Your PRD title',
-        summary: 'The feature you specced, for whom, and the success metric. Replace this template in projects.js.',
-        tags: ['PRD', 'Metrics'],
-        facts: [
-            { k: 'Feature', v: 'Feature name' },
-            { k: 'Users', v: 'Target segment' },
-            { k: 'North star', v: 'Success metric' },
-            { k: 'Scope', v: 'MVP / v1' },
-        ],
-        sections: [
-            { heading: 'Problem statement', body: 'The user pain this feature solves.' },
-            { heading: 'Requirements', list: ['Must-have', 'Should-have', 'Out of scope'] },
-        ],
-        links: [{ label: 'Open the PRD (PDF)', url: '#' }],
-    },
-    {
-        template: true,
-        type: 'teardown',
-        title: 'Your product teardown',
-        summary: 'The product you analysed and your sharpest insight. Replace this template in projects.js.',
-        tags: ['Teardown', 'UX'],
-        facts: [
-            { k: 'Product', v: 'App name' },
-            { k: 'Focus', v: 'Onboarding / feature' },
-            { k: 'Insight', v: 'Main finding' },
-            { k: 'Proposal', v: 'Your fix' },
-        ],
-        sections: [
-            { heading: 'What works', list: ['Strength 1', 'Strength 2'] },
-            { heading: 'What I would change', list: ['Gap and proposed fix'] },
-        ],
-        links: [{ label: 'Read the teardown', url: '#' }],
-    },
-    {
-        template: true,
-        type: 'product',
-        title: 'Product you built',
-        summary: 'What you built, who it is for, and what it does. Replace this template in projects.js.',
-        tags: ['No-code', 'AI'],
-        facts: [
-            { k: 'Built with', v: 'Tools used' },
-            { k: 'Users', v: 'Who uses it' },
-            { k: 'Status', v: 'Live / beta' },
-            { k: 'Result', v: 'Usage or learning' },
-        ],
-        sections: [
-            { heading: 'Why I built it', body: 'The problem that pushed you to build this.' },
-            { heading: 'How it works', list: ['Key feature 1', 'Key feature 2'] },
-            { heading: 'What I learned', body: 'The product lesson from shipping it.' },
-        ],
-        links: [{ label: 'Try it live', url: '#' }],
+        pdf: 'assets/OutLoud-V2-Case-Study.pdf',
+        link: 'https://outloud-v-2.replit.app',
     },
 ];
 
 (() => {
-    const grid = document.getElementById('workGrid');
-    const filters = document.getElementById('workFilters');
+    const grids = { ai: document.getElementById('aiGrid'), case: document.getElementById('caseGrid') };
     const modal = document.getElementById('projectModal');
-    if (!grid || !filters || !modal) return;
+    if (!modal || !grids.ai || !grids.case) return;
 
     const el = (tag, cls, text) => {
         const n = document.createElement(tag);
@@ -105,53 +73,69 @@ const PROJECTS = [
         if (text != null) n.textContent = text;
         return n;
     };
-    const arrow = () => el('span', 'arrow');
 
-    // Filters: "All" plus only the types that actually have projects
-    let active = 'all';
-    const used = Object.keys(TYPES).filter(t => PROJECTS.some(p => p.type === t));
-    [['all', 'All'], ...used.map(t => [t, TYPES[t]])].forEach(([key, label]) => {
-        const b = el('button', 'filter', label);
-        b.type = 'button';
-        b.dataset.key = key;
-        b.setAttribute('aria-pressed', key === active);
-        b.addEventListener('click', () => {
-            active = key;
-            filters.querySelectorAll('.filter').forEach(f => f.setAttribute('aria-pressed', f.dataset.key === key));
-            render();
+    // Renders *em* and **strong** without using innerHTML
+    const rich = (tag, text, cls) => {
+        const n = el(tag, cls);
+        text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/).forEach(part => {
+            if (!part) return;
+            if (part.startsWith('**')) n.appendChild(el('strong', null, part.slice(2, -2)));
+            else if (part.startsWith('*')) n.appendChild(el('em', null, part.slice(1, -1)));
+            else n.appendChild(document.createTextNode(part));
         });
-        filters.appendChild(b);
+        return n;
+    };
+
+    const svg = (paths) => {
+        const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        s.setAttribute('viewBox', '0 0 24 24');
+        s.setAttribute('fill', 'none');
+        s.setAttribute('stroke', 'currentColor');
+        s.setAttribute('stroke-width', '1.6');
+        s.setAttribute('stroke-linecap', 'round');
+        s.setAttribute('stroke-linejoin', 'round');
+        s.setAttribute('aria-hidden', 'true');
+        s.innerHTML = paths;
+        return s;
+    };
+    const ICONS = {
+        pdf: '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><text x="12" y="17.5" text-anchor="middle" font-size="5.5" font-family="sans-serif" font-weight="700" fill="currentColor" stroke="none">PDF</text>',
+        link: '<path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/>',
+    };
+
+    PROJECTS.forEach((p, i) => {
+        const grid = grids[p.group];
+        if (!grid) return;
+        const card = el('button', 'card work-card');
+        card.type = 'button';
+        card.appendChild(el('div', 'banner', p.name));
+        const body = el('div', 'body');
+        body.appendChild(el('div', 'type', p.group === 'ai' ? 'AI product' : 'Case study'));
+        body.appendChild(el('h4', null, p.tagline));
+        body.appendChild(rich('p', p.intro));
+        const open = el('div', 'open', 'Read more');
+        open.appendChild(el('span', 'arrow'));
+        body.appendChild(open);
+        card.appendChild(body);
+        card.addEventListener('click', () => openModal(i, card));
+        grid.appendChild(card);
     });
 
-    function render() {
-        grid.replaceChildren();
-        PROJECTS.forEach((p, i) => {
-            if (active !== 'all' && p.type !== active) return;
-            const card = el('button', 'card work-card' + (p.template ? ' template' : ''));
-            card.type = 'button';
-            card.appendChild(el('div', 'type', TYPES[p.type] || p.type));
-            card.appendChild(el('h3', null, p.title));
-            card.appendChild(el('p', null, p.summary));
-            if (p.tags && p.tags.length) {
-                const meta = el('div', 'meta');
-                p.tags.forEach(t => meta.appendChild(el('span', 'tag', t)));
-                card.appendChild(meta);
-            }
-            const open = el('div', 'open', 'Open');
-            open.appendChild(arrow());
-            card.appendChild(open);
-            card.addEventListener('click', () => openModal(i, card));
-            grid.appendChild(card);
-        });
-    }
+    Object.entries(grids).forEach(([group, grid]) => {
+        if (!grid.children.length) {
+            grid.appendChild(el('div', 'empty-note', group === 'case'
+                ? 'Case studies are being written up and will appear here soon.'
+                : 'Products will appear here soon.'));
+        }
+    });
 
     let lastFocus = null;
     function openModal(i, trigger) {
         const p = PROJECTS[i];
         lastFocus = trigger;
-        document.getElementById('modalType').textContent = TYPES[p.type] || p.type;
+        document.getElementById('modalType').textContent = p.eyebrow || '';
         document.getElementById('modalTitle').textContent = p.title;
-        document.getElementById('modalSummary').textContent = p.summary;
+        document.getElementById('modalSummary').replaceChildren(...rich('span', p.summary || '').childNodes);
 
         const facts = document.getElementById('modalFacts');
         facts.replaceChildren();
@@ -168,26 +152,34 @@ const PROJECTS = [
         (p.sections || []).forEach(s => {
             const box = el('div', 'modal-section');
             box.appendChild(el('h4', null, s.heading));
-            if (s.body) box.appendChild(el('p', null, s.body));
-            if (s.list) {
+            (s.paras || []).forEach(t => box.appendChild(rich('p', t)));
+            if (s.items) {
                 const ul = el('ul');
-                s.list.forEach(item => ul.appendChild(el('li', null, item)));
+                s.items.forEach(t => ul.appendChild(rich('li', t)));
                 box.appendChild(ul);
             }
             sections.appendChild(box);
         });
 
-        const actions = document.getElementById('modalActions');
-        actions.replaceChildren();
-        (p.links || []).forEach((l, j) => {
-            const a = el('a', 'cta' + (j === 0 ? ' primary' : ''), l.label + ' ');
-            a.href = l.url;
-            if (/^https?:/.test(l.url)) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
-            a.appendChild(arrow());
-            actions.appendChild(a);
-        });
+        const links = document.getElementById('modalLinks');
+        links.replaceChildren();
+        const addLink = (href, kind, label) => {
+            const a = el('a', 'icon-link ' + kind);
+            a.href = href;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.setAttribute('aria-label', label);
+            a.title = label;
+            a.appendChild(svg(ICONS[kind]));
+            a.appendChild(el('span', null, label));
+            links.appendChild(a);
+        };
+        if (p.pdf) addLink(p.pdf, 'pdf', 'Case study PDF');
+        if (p.link) addLink(p.link, 'link', 'Try the product');
+        links.hidden = !links.children.length;
 
         modal.classList.add('open');
+        modal.querySelector('.modal-box').scrollTop = 0;
         document.body.style.overflow = 'hidden';
         document.getElementById('modalClose').focus();
     }
@@ -201,6 +193,4 @@ const PROJECTS = [
     document.getElementById('modalClose').addEventListener('click', closeModal);
     modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
-
-    render();
 })();

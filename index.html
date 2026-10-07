@@ -212,68 +212,103 @@
         .tools { margin-top: 48px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
         .tools .label { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--faint); margin-right: 8px; }
 
-        /* ---------- Work (proof of work) ---------- */
-        .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
-        .filter {
-            font-family: var(--font-body);
-            font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
-            color: var(--muted); background: transparent;
-            border: 1px solid var(--line-strong); border-radius: 999px;
-            padding: 8px 16px; cursor: pointer;
-            transition: color .2s, border-color .2s, background .2s;
-        }
-        .filter:hover { color: var(--text); }
-        .filter[aria-pressed="true"] { color: #fff; background: var(--accent); border-color: var(--accent); }
+        /* ---------- Projects ---------- */
+        .subsection + .subsection { margin-top: 72px; }
+        .sub-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+        .sub-head h3 { font-size: clamp(22px, 3vw, 28px); }
+        .sub-head p { font-size: 13px; color: var(--faint); max-width: 460px; }
         .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
         .work-card {
             display: flex; flex-direction: column; text-align: left;
             font: inherit; color: inherit; cursor: pointer; width: 100%;
+            padding: 0; overflow: hidden;
         }
         .work-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+        .work-card .banner {
+            height: 96px; display: flex; align-items: flex-end; padding: 0 var(--pad) 14px;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(235, 81, 155, 0.55), transparent 55%),
+                radial-gradient(circle at 90% 80%, rgba(235, 81, 155, 0.35), transparent 50%),
+                linear-gradient(135deg, #3a1f3d, #1d1430);
+            font-family: var(--font-display); font-weight: 700; font-size: 26px; color: #fff; letter-spacing: -0.03em;
+        }
+        .work-card .body { padding: var(--pad); display: flex; flex-direction: column; flex: 1; }
         .work-card .type { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); }
-        .work-card h3 { font-size: 20px; margin: 12px 0 10px; }
+        .work-card h4 { font-size: 19px; margin: 10px 0 10px; font-style: italic; font-weight: 500; }
         .work-card p { font-size: 13px; line-height: 1.6; flex: 1; }
-        .work-card .meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
         .work-card .open {
             margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line);
             display: flex; align-items: center; gap: 12px;
             font-family: var(--font-display); font-size: 14px; color: var(--text);
         }
-        .work-card.template { border-style: dashed; }
+        .empty-note {
+            border: 1px dashed var(--line-strong); border-radius: var(--radius);
+            padding: var(--pad); font-size: 13px; color: var(--faint);
+        }
 
-        /* Shared modal */
+        /* Floating project modal */
         .modal {
             position: fixed; inset: 0; z-index: 100;
-            display: none; align-items: flex-start; justify-content: center;
-            padding: 6vh 16px; overflow-y: auto;
-            background: rgba(8, 6, 14, 0.78); backdrop-filter: blur(6px);
+            display: none; align-items: center; justify-content: center;
+            padding: 16px;
+            background: rgba(8, 6, 14, 0.8); backdrop-filter: blur(8px);
         }
         .modal.open { display: flex; }
         .modal-box {
-            position: relative; width: 100%; max-width: 760px;
-            background: var(--surface); border: 1px solid var(--line-strong);
-            border-radius: 18px; padding: clamp(22px, 4vw, 40px);
+            position: relative; width: 100%; max-width: 560px; max-height: 92vh;
+            overflow-y: auto; overscroll-behavior: contain;
+            background: #16121f; border: 1px solid var(--line-strong);
+            border-radius: 14px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
         }
+        .modal-banner {
+            height: 96px;
+            background:
+                radial-gradient(circle at 12% 30%, rgba(235, 81, 155, 0.6), transparent 50%),
+                radial-gradient(circle at 92% 70%, rgba(235, 81, 155, 0.45), transparent 45%),
+                linear-gradient(135deg, #4a2246, #2a1733);
+        }
+        .modal-inner { padding: 28px 32px 32px; }
         .modal-close {
-            position: absolute; top: 16px; right: 16px;
-            width: 36px; height: 36px; border-radius: 50%;
-            background: transparent; border: 1px solid var(--line-strong); color: var(--text);
+            position: absolute; top: 12px; right: 12px;
+            width: 34px; height: 34px; border-radius: 50%;
+            background: rgba(16, 12, 26, 0.55); border: 1px solid rgba(255, 255, 255, 0.25); color: #fff;
             font-size: 18px; line-height: 1; cursor: pointer;
         }
         .modal-close:hover { border-color: var(--accent); }
-        .modal .type { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); }
-        .modal h2 { font-size: clamp(26px, 4vw, 36px); margin: 12px 40px 14px 0; }
-        .modal .summary { font-size: 15px; }
-        .facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin: 28px 0; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
-        .fact { background: var(--surface-2); padding: 14px 16px; }
+        .modal .eyebrow { margin-bottom: 12px; font-size: 11px; }
+        .modal .eyebrow::before { content: ""; width: 18px; height: 1px; background: var(--accent); }
+        .modal .eyebrow::after { display: none; }
+        .modal h2 { font-size: clamp(24px, 4vw, 30px); line-height: 1.15; margin-bottom: 14px; }
+        .modal .summary { font-size: 14px; line-height: 1.7; }
+        .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 24px; margin: 24px 0 26px; }
         .fact .k { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--faint); }
-        .fact .v { margin-top: 4px; color: var(--text); font-family: var(--font-display); font-size: 15px; line-height: 1.35; }
+        .fact .v { margin-top: 4px; color: var(--text); font-size: 13px; line-height: 1.45; }
         .modal-section + .modal-section { margin-top: 22px; }
-        .modal-section h4 { font-size: 17px; margin-bottom: 8px; }
-        .modal-section p, .modal-section li { font-size: 14px; }
-        .modal-section ul { margin: 0; padding-left: 18px; }
-        .modal .actions { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; }
-
+        .modal-section h4 {
+            font-family: var(--font-body); font-weight: 500;
+            font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+            color: var(--accent); margin-bottom: 10px;
+        }
+        .modal-section p { font-size: 13px; line-height: 1.7; }
+        .modal-section p + p { margin-top: 10px; }
+        .modal-section ul { list-style: none; margin: 0; padding: 0; }
+        .modal-section li { position: relative; padding-left: 18px; font-size: 13px; line-height: 1.6; }
+        .modal-section li + li { margin-top: 10px; }
+        .modal-section li::before { content: "+"; position: absolute; left: 0; top: 0; color: var(--accent); }
+        .modal-section strong { color: var(--text); }
+        .modal-links { margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 12px; }
+        .icon-link {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 10px 16px; border-radius: 10px;
+            border: 1px solid var(--line-strong); color: var(--text);
+            font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+            transition: border-color .2s, background .2s;
+        }
+        .icon-link svg { width: 22px; height: 22px; flex: none; }
+        .icon-link:hover { border-color: var(--accent); }
+        .icon-link.pdf { background: var(--accent); border-color: var(--accent); color: #fff; }
+        .icon-link.pdf:hover { background: #d63f87; }
         /* ---------- Experience mosaic ---------- */
         .timeline { position: relative; }
         .timeline::before {
@@ -352,7 +387,6 @@
             .about-grid, .mosaic { grid-template-columns: 1fr; gap: 32px; }
             .grid-3 { grid-template-columns: 1fr; }
             .work-grid { grid-template-columns: 1fr 1fr; }
-            .facts { grid-template-columns: 1fr 1fr; }
             .edu-grid { grid-template-columns: 1fr 1fr; }
             .edu-grid .edu:first-child { grid-column: 1 / -1; }
             .channels { grid-template-columns: 1fr; }
@@ -375,6 +409,8 @@
             .wrap { padding: 0 16px; }
             .wins { grid-template-columns: 1fr; }
             .work-grid { grid-template-columns: 1fr; }
+            .modal-inner { padding: 22px 20px 24px; }
+            .facts { grid-template-columns: 1fr; gap: 14px; }
             .edu-grid { grid-template-columns: 1fr; }
             .stats { grid-template-columns: 1fr; }
             .stat + .stat { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); margin-top: 24px; }
@@ -388,7 +424,7 @@
             <a href="#" class="logo">Nisha Verma<span>.</span></a>
             <div class="nav-links">
                 <a href="#about" class="link"><b>01</b>About</a>
-                <a href="#work" class="link"><b>02</b>Work</a>
+                <a href="#projects" class="link"><b>02</b>Projects</a>
                 <a href="#expertise" class="link"><b>03</b>Expertise</a>
                 <a href="#experience" class="link"><b>04</b>Experience</a>
                 <a href="#education" class="link"><b>05</b>Education</a>
@@ -398,7 +434,7 @@
         </div>
         <div class="mobile-menu" id="mobileMenu">
             <a href="#about"><b>01</b>About</a>
-            <a href="#work"><b>02</b>Work</a>
+            <a href="#projects"><b>02</b>Projects</a>
             <a href="#expertise"><b>03</b>Expertise</a>
             <a href="#experience"><b>04</b>Experience</a>
             <a href="#education"><b>05</b>Education</a>
@@ -415,7 +451,7 @@
                 I'm Nisha Verma, an EdTech Specialist transitioning into Product Management. I combine pedagogical expertise with data-driven insights to develop impactful K-8 educational products that drive student engagement and outcomes.
             </p>
             <div class="actions reveal">
-                <a href="#work" class="cta primary">View my work <span class="arrow"></span></a>
+                <a href="#projects" class="cta primary">View my work <span class="arrow"></span></a>
                 <a href="#contact" class="cta">Get in touch <span class="arrow"></span></a>
             </div>
             <div class="stats reveal">
@@ -448,16 +484,30 @@
         </div>
     </section>
 
-    <!-- 02 Work -->
-    <section id="work">
+    <!-- 02 Projects -->
+    <section id="projects">
         <div class="wrap">
             <div class="section-head reveal">
-                <div class="eyebrow">02 &nbsp; Work</div>
-                <h2 class="section-title">What I've <em>shipped</em>.</h2>
-                <p class="section-lede">Case studies, PRDs, teardowns and products I've built. Open any card for the full story.</p>
+                <div class="eyebrow">02 &nbsp; Projects</div>
+                <h2 class="section-title">What I've <em>built</em> and studied.</h2>
+                <p class="section-lede">Products I've shipped with AI, and the case studies behind my product thinking. Open any card for the full story.</p>
             </div>
-            <div class="filters reveal" id="workFilters" role="group" aria-label="Filter work"></div>
-            <div class="work-grid" id="workGrid"></div>
+
+            <div class="subsection reveal">
+                <div class="sub-head">
+                    <h3>AI &amp; <em>me</em></h3>
+                    <p>Products I've designed and built end to end with AI.</p>
+                </div>
+                <div class="work-grid" id="aiGrid"></div>
+            </div>
+
+            <div class="subsection reveal">
+                <div class="sub-head">
+                    <h3>Case <em>studies</em></h3>
+                    <p>Problems I've researched, broken down and solved on paper.</p>
+                </div>
+                <div class="work-grid" id="caseGrid"></div>
+            </div>
         </div>
     </section>
 
@@ -660,16 +710,19 @@
         </div>
     </footer>
 
-    <!-- Shared modal: every work card opens this -->
+    <!-- Floating modal: every project card opens this -->
     <div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="modal-box">
             <button type="button" class="modal-close" id="modalClose" aria-label="Close">&times;</button>
-            <div class="type" id="modalType"></div>
-            <h2 id="modalTitle"></h2>
-            <p class="summary" id="modalSummary"></p>
-            <div class="facts" id="modalFacts"></div>
-            <div id="modalSections"></div>
-            <div class="actions" id="modalActions"></div>
+            <div class="modal-banner" aria-hidden="true"></div>
+            <div class="modal-inner">
+                <div class="eyebrow" id="modalType"></div>
+                <h2 id="modalTitle"></h2>
+                <p class="summary" id="modalSummary"></p>
+                <div class="facts" id="modalFacts"></div>
+                <div id="modalSections"></div>
+                <div class="modal-links" id="modalLinks"></div>
+            </div>
         </div>
     </div>
 
