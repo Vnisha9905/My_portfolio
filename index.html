@@ -281,6 +281,19 @@
         .modal .eyebrow::after { display: none; }
         .modal h2 { font-size: clamp(24px, 4vw, 30px); line-height: 1.15; margin-bottom: 14px; }
         .modal .summary { font-size: 14px; line-height: 1.7; }
+        .modal .summary p + p { margin-top: 10px; }
+        .modal-section p.quote {
+            border-left: 2px solid var(--accent); padding: 2px 0 2px 14px;
+            color: var(--text); font-family: var(--font-display); font-size: 15px; line-height: 1.5;
+        }
+        .modal-figure { margin: 14px 0 4px; }
+        .modal-figure a { display: block; border-radius: 10px; overflow: hidden; border: 1px solid var(--line-strong); transition: border-color .2s; }
+        .modal-figure a:hover { border-color: var(--accent); }
+        .modal-figure img { display: block; width: 100%; height: auto; background: #fbe3e1; }
+        .modal-figure figcaption { margin-top: 8px; font-size: 11px; letter-spacing: 0.08em; color: var(--faint); }
+        .modal-section .skills { display: flex; flex-wrap: wrap; gap: 8px; }
+        .modal-section .skills .tag { font-size: 10px; letter-spacing: 0.1em; }
+        .modal-section .skills .tag.key { color: #fff; border-color: var(--accent); background: var(--accent-soft); }
         .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 24px; margin: 24px 0 26px; }
         .fact .k { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--faint); }
         .fact .v { margin-top: 4px; color: var(--text); font-size: 13px; line-height: 1.45; }
@@ -718,7 +731,7 @@
             <div class="modal-inner">
                 <div class="eyebrow" id="modalType"></div>
                 <h2 id="modalTitle"></h2>
-                <p class="summary" id="modalSummary"></p>
+                <div class="summary" id="modalSummary"></div>
                 <div class="facts" id="modalFacts"></div>
                 <div id="modalSections"></div>
                 <div class="modal-links" id="modalLinks"></div>
