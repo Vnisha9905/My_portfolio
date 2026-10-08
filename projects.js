@@ -8,12 +8,16 @@
  * intro:    2–3 lines on the card
  * eyebrow:  small pink label above the modal title
  * title:    modal heading
- * summary:  modal intro paragraph
+ * summary:  modal intro — one paragraph, or a list of paragraphs
  * facts:    { k, v } pairs shown as a 2-column grid
  * sections: { heading, paras } or { heading, items }
  *           paras: paragraphs, items: "+" bullet points
+ *           a paragraph starting with "> " is shown as a pull quote
+ * skills:   optional list shown as tags under "Skills showcased";
+ *           start an entry with "!" to highlight it
  * pdf:      path or URL to the PDF (shows the PDF icon button)
- * link:     live product URL (shows the link icon button)
+ * link:     live product / prototype URL (shows the link icon button)
+ * linkLabel: optional text for the link button (default "Try the product")
  *
  * In any text, *word* renders as pink italics and **word** as bold.
  */
@@ -122,7 +126,83 @@ const PROJECTS = [
         ],
         pdf: 'AI_agent_skill.pdf',
     },
-];    
+
+    {
+        group: 'case',
+        name: 'PulseFit',
+        tagline: 'A reason to come back',
+        intro: "VitaFit users started strong, then quietly stopped opening the app. I turned that retention problem into a motivation loop — personalized challenges, XP, an evolving avatar and community — tied to a +20% repeat-user target.",
+        eyebrow: 'Retention & engagement',
+        title: "The problem wasn't getting users to start. It was giving them a reason to come back.",
+        summary: [
+            "VitaFit users begin with high motivation. But after the first few weeks, workouts start feeling repetitive: progress isn't visible, showing up isn't meaningfully rewarded, and instructors disappear after the session.",
+            "The result isn't an obvious rage-quit. Users simply *start opening the app less* — until the routine breaks.",
+        ],
+        facts: [
+            { k: 'Type', v: '0→1 Product Strategy · Engagement & Retention' },
+            { k: 'Format', v: 'PRD · User flows · Wireframes · Interactive prototype · Roadmap' },
+            { k: 'North star', v: '+20% Repeat User Rate within the first 3 months — supported by +15–20% WAU, +15% sessions/user/week and +10% 30-day retention.' },
+            { k: 'The bet', v: 'If every workout creates visible progress, meaningful reward and social connection, users have a reason to return for the next one — turning isolated workouts into a repeatable motivation loop.' },
+        ],
+        sections: [
+            {
+                heading: 'From a workout app to a reason to return',
+                paras: [
+                    "**Before:** Users complete essentially the same experience, progress lives mostly in memory, instructors appear once and disappear, and nothing meaningfully pulls someone back after a missed day.",
+                    "**With Pulse:** Every workout feeds the next one. Personalized challenges create an achievable goal; completion earns XP; progress becomes visible through rewards and avatar evolution; community challenges create accountability; and instructors re-enter the experience as challenge leaders and sources of guidance.",
+                    "The product wasn't designed around adding more fitness content. It was designed around the question:",
+                    "> What should happen between today's workout and tomorrow's decision to come back?",
+                ],
+            },
+            {
+                heading: 'Build the motivation loop',
+                items: [
+                    '**Make the next action obvious.** Instead of asking users to decide what to do every time they open the app, Pulse puts a personalized daily challenge in front of them, sized to their fitness level.',
+                    '**Turn effort into visible progress.** Completing challenges earns XP, updates leaderboard position and moves users toward meaningful milestones. An evolving avatar makes longer-term progress visible instead of leaving it as another number on a chart.',
+                    '**Make consistency social.** Group challenges, progress sharing, local events and nearby users turn an individual fitness routine into something other people participate in too.',
+                    '**Put instructors back into the loop.** Instead of creating a disconnected instructor feature, instructors become challenge leaders and sources of milestone guidance inside the experience users already return to.',
+                ],
+            },
+            {
+                heading: 'Design for the loop, not individual screens',
+                paras: [
+                    'The prototype follows one behavioural loop:',
+                    '> Open → Start → Finish → Reward → Share → Return',
+                    "Pulse Home surfaces today's goal. Live Challenge tracks the activity. Rewards make completion visible. Community creates the reason to carry that momentum into the next session.",
+                    'Even edge cases were designed around protecting that loop: weak GPS, abandoning a challenge midway, missed days, expired challenges and maximum-XP states each have defined fallback behaviour.',
+                ],
+            },
+            {
+                heading: 'Prioritize what needs proving first',
+                paras: [
+                    "I didn't put the most impressive features into the MVP.",
+                    'The roadmap starts with the core motivation loop — personalized challenges, XP and rewards. Social motivation comes next. Deeper personalization follows only after usage data exists.',
+                    'Expensive features such as full live GPS rendering and real-time avatar movement are deliberately pushed later, after adoption justifies the investment.',
+                    'That makes the roadmap less about *"What else can we build?"* and more about:',
+                    '> What assumption do we need to prove before earning the right to build the next layer?',
+                ],
+            },
+            {
+                heading: 'The verdict',
+                paras: [
+                    "PulseFit wasn't designed to remind people that fitness is important. It was designed to *make showing up feel noticed*.",
+                    'A workout becomes progress. Progress becomes reward. Reward becomes something worth returning for. And community makes that return harder to quietly abandon.',
+                    'The success criteria reflect that: +20% repeat-user rate, alongside targets of +15–20% WAU, +15% sessions per user/week, +10% 30-day retention and +25% engagement with community and instructor features.',
+                    "> The problem was never that users forgot to work out. It's that nothing in the app noticed when they did.",
+                ],
+            },
+        ],
+        skills: [
+            'Product Strategy', 'Problem Framing', 'Product Discovery', 'User Personas',
+            '!Retention & Engagement Strategy', 'Gamification', 'Habit Loop Design', 'PRD Writing',
+            'Feature Prioritization', '!MVP Scoping', 'User Flows', 'Wireframing', 'Prototyping',
+            'Edge-Case Design', '!Success Metrics', 'Roadmapping',
+        ],
+        pdf: 'assets/PulseFit-Product-Story.pdf',
+        link: 'https://personal-pulse-quest.lovable.app/',
+        linkLabel: 'View the prototype',
+    },
+];
 (() => {
     const grids = { ai: document.getElementById('aiGrid'), case: document.getElementById('caseGrid') };
     const modal = document.getElementById('projectModal');
@@ -196,7 +276,8 @@ const PROJECTS = [
         lastFocus = trigger;
         document.getElementById('modalType').textContent = p.eyebrow || '';
         document.getElementById('modalTitle').textContent = p.title;
-        document.getElementById('modalSummary').replaceChildren(...rich('span', p.summary || '').childNodes);
+        const summary = Array.isArray(p.summary) ? p.summary : [p.summary || ''];
+        document.getElementById('modalSummary').replaceChildren(...summary.map(t => rich('p', t)));
 
         const facts = document.getElementById('modalFacts');
         facts.replaceChildren();
@@ -213,7 +294,8 @@ const PROJECTS = [
         (p.sections || []).forEach(s => {
             const box = el('div', 'modal-section');
             box.appendChild(el('h4', null, s.heading));
-            (s.paras || []).forEach(t => box.appendChild(rich('p', t)));
+            (s.paras || []).forEach(t => box.appendChild(
+                t.startsWith('> ') ? rich('p', t.slice(2), 'quote') : rich('p', t)));
             if (s.items) {
                 const ul = el('ul');
                 s.items.forEach(t => ul.appendChild(rich('li', t)));
@@ -221,6 +303,15 @@ const PROJECTS = [
             }
             sections.appendChild(box);
         });
+        if (p.skills && p.skills.length) {
+            const box = el('div', 'modal-section');
+            box.appendChild(el('h4', null, 'Skills showcased'));
+            const tags = el('div', 'skills');
+            p.skills.forEach(k => tags.appendChild(
+                k.startsWith('!') ? el('span', 'tag key', k.slice(1)) : el('span', 'tag', k)));
+            box.appendChild(tags);
+            sections.appendChild(box);
+        }
 
         const links = document.getElementById('modalLinks');
         links.replaceChildren();
@@ -236,7 +327,7 @@ const PROJECTS = [
             links.appendChild(a);
         };
         if (p.pdf) addLink(p.pdf, 'pdf', 'Case study PDF');
-        if (p.link) addLink(p.link, 'link', 'Try the product');
+        if (p.link) addLink(p.link, 'link', p.linkLabel || 'Try the product');
         links.hidden = !links.children.length;
 
         modal.classList.add('open');
