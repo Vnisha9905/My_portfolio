@@ -60,7 +60,7 @@ const PROJECTS = [
         pdf: 'assets/OutLoud-V2-Case-Study.pdf',
         link: 'https://outloud-v-2.replit.app',
     },
-];
+
     {
         group: 'ai',
         name: 'AI Support Ops',
@@ -122,6 +122,7 @@ const PROJECTS = [
         ],
         pdf: 'AI_agent_skill.pdf',
     },
+];    
 (() => {
     const grids = { ai: document.getElementById('aiGrid'), case: document.getElementById('caseGrid') };
     const modal = document.getElementById('projectModal');
