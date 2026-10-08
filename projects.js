@@ -13,6 +13,8 @@
  * sections: { heading, paras } or { heading, items }
  *           paras: paragraphs, items: "+" bullet points
  *           a paragraph starting with "> " is shown as a pull quote
+ *           an { image, alt, caption } entry in paras shows a picture
+ *           (click opens it full size)
  * skills:   optional list shown as tags under "Skills showcased";
  *           start an entry with "!" to highlight it
  * pdf:      path or URL to the PDF (shows the PDF icon button)
@@ -168,6 +170,11 @@ const PROJECTS = [
                 paras: [
                     'The prototype follows one behavioural loop:',
                     '> Open → Start → Finish → Reward → Share → Return',
+                    {
+                        image: 'assets/PulseFit-Prototype-Flow.png',
+                        alt: 'Four prototype screens in sequence: Pulse Home with today\'s personalized challenge, Live Challenge with GPS workout tracking, Rewards and Progress with XP and leaderboard, and Community with friends and group challenges.',
+                        caption: 'Pulse Home → Live Challenge → Rewards & Progress → Community · click to enlarge',
+                    },
                     "Pulse Home surfaces today's goal. Live Challenge tracks the activity. Rewards make completion visible. Community creates the reason to carry that momentum into the next session.",
                     'Even edge cases were designed around protecting that loop: weak GPS, abandoning a challenge midway, missed days, expired challenges and maximum-XP states each have defined fallback behaviour.',
                 ],
@@ -294,8 +301,25 @@ const PROJECTS = [
         (p.sections || []).forEach(s => {
             const box = el('div', 'modal-section');
             box.appendChild(el('h4', null, s.heading));
-            (s.paras || []).forEach(t => box.appendChild(
-                t.startsWith('> ') ? rich('p', t.slice(2), 'quote') : rich('p', t)));
+            (s.paras || []).forEach(t => {
+                if (typeof t === 'object' && t.image) {
+                    const fig = el('figure', 'modal-figure');
+                    const a = el('a');
+                    a.href = t.image;
+                    a.target = '_blank';
+                    a.rel = 'noopener noreferrer';
+                    const img = el('img');
+                    img.src = t.image;
+                    img.alt = t.alt || '';
+                    img.loading = 'lazy';
+                    a.appendChild(img);
+                    fig.appendChild(a);
+                    if (t.caption) fig.appendChild(el('figcaption', null, t.caption));
+                    box.appendChild(fig);
+                } else {
+                    box.appendChild(t.startsWith('> ') ? rich('p', t.slice(2), 'quote') : rich('p', t));
+                }
+            });
             if (s.items) {
                 const ul = el('ul');
                 s.items.forEach(t => ul.appendChild(rich('li', t)));
