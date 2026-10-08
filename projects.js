@@ -61,7 +61,67 @@ const PROJECTS = [
         link: 'https://outloud-v-2.replit.app',
     },
 ];
-
+    {
+        group: 'ai',
+        name: 'AI Support Ops',
+        tagline: 'Matching AI to the job, not the hype',
+        intro: 'A support team has five manual workflows. Instead of putting an AI agent in front of all five, I matched each to the least autonomous abstraction that could solve it reliably: 3 Skills, 1 Agent, and 1 capability deliberately left unbuilt.',
+        eyebrow: 'AI capability architecture · Skill & Agent design',
+        title: "The easy answer was an AI agent for everything. I did the opposite.",
+        summary: 'A support team has five manual workflows, and the easy answer is to put an AI agent in front of all five. I looked at what each workflow *actually needed*: deterministic rules, bounded AI judgment, dynamic investigation, or no AI at all. The result was 3 Skills, 1 Agent, and 1 capability deliberately left unbuilt.',
+        facts: [
+            { k: 'Type', v: 'AI capability architecture · Skill & Agent design' },
+            { k: 'Format', v: '5 support workflows · 4 possible automation decisions' },
+            { k: 'North star', v: 'Maximise reliable AI coverage, not AI coverage for its own sake' },
+            { k: 'The bet', v: 'Matching each workflow to the least autonomous abstraction that can reliably solve it adds AI value without unnecessary autonomy or operational risk.' },
+            { k: 'Validation', v: '26/26 test cases passed across the four built capabilities' },
+            { k: 'Outcome', v: '3 Skills · 1 Agent · 1 deliberate "Neither"' },
+        ],
+        sections: [
+            {
+                heading: 'Intended vs actual',
+                paras: [
+                    '**Intended:** Reduce support handling effort, improve consistency and policy compliance, and make engineering handoffs more actionable.',
+                    "**Actual:** The answer wasn't *add an Agent.* Each of the five workflows needed a different level of autonomy, and one needed none at all.",
+                ],
+            },
+            {
+                heading: 'Five workflows, five decisions',
+                items: [
+                    '**Ticket Triage became a Skill.** Categories, routing and escalation boundaries were already known.',
+                    '**Reply Drafting became a Skill.** AI could handle contextual language while policy remained the source of truth.',
+                    "**At-Risk Customer Briefing became a Skill.** The sources and retrieval pattern were predictable; the AI's value was synthesis.",
+                    '**Bug Triage became an Agent.** The model had to investigate dynamically, evaluate candidate matches and change its next action based on evidence.',
+                    "**Weekly QA Grading became Neither.** The underlying judgment didn't have reliable enough ground truth.",
+                ],
+            },
+            {
+                heading: 'Fix the automation decision, not just the workflow',
+                items: [
+                    '**Use AI where language creates ambiguity.** Ticket descriptions vary even when the category and routing rules are fixed. The Skill interprets the language while deterministic rules stay authoritative.',
+                    '**Keep policy outside the model\'s authority.** Reply Drafting uses current policy and tone guidance, but it cannot approve refunds, invent policy or make business commitments. A human reviews every draft.',
+                    '**Give the Agent autonomy only when the path is genuinely dynamic.** Bug Triage searches the changelog from multiple angles, judges matches on meaning rather than keywords, and returns either a known-issue report or a structured new-issue write-up.',
+                    "**Don't automate unreliable judgment.** Weekly QA Grading was left unbuilt because plausible AI scores weren't enough when the ground truth was subjective and the output could misdirect coaching.",
+                ],
+            },
+            {
+                heading: 'The tests changed the design',
+                paras: [
+                    'In At-Risk Customer Briefing, the system initially combined billing lateness and usage decline into an *unsupported causal claim*. I introduced an explicit correlation-vs-causation rule, re-ran the tests and re-validated the capability.',
+                    'Bug Triage was tested against a harder case: a genuine known issue with *zero literal keyword overlap* with the changelog entry. The Agent matched it semantically while avoiding a separate false match.',
+                    'The goal was never "does the AI produce an answer?" It was "does the capability behave reliably enough for the job we want to give it?"',
+                ],
+            },
+            {
+                heading: 'The verdict',
+                paras: [
+                    "5 workflows. 3 Skills. 1 Agent. 1 deliberate \"Neither.\" 26/26 validation tests passed: Ticket Triage 4/4, Reply Drafting 15/15, At-Risk Briefing 5/5, Bug Triage 2/2.",
+                    "The interesting outcome wasn't that I built an Agent. It was that I *didn't* build one for four other workflows where it wasn't the right abstraction. The project became less about how much AI can we add, and more about where AI creates enough value to justify the autonomy we're giving it.",
+                ],
+            },
+        ],
+        pdf: 'AI_agent_skill.pdf',
+    },
 (() => {
     const grids = { ai: document.getElementById('aiGrid'), case: document.getElementById('caseGrid') };
     const modal = document.getElementById('projectModal');
