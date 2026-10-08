@@ -209,6 +209,80 @@ const PROJECTS = [
         link: 'https://personal-pulse-quest.lovable.app/',
         linkLabel: 'View the prototype',
     },
+
+    {
+        group: 'case',
+        name: 'K-12 Learning',
+        tagline: 'Personalised Learning Recommendation System',
+        intro: "Every learner on a K-12 Math platform got the same post-class experience. I designed a personalised learning layer — adaptive practice, a learning roadmap and on-demand doubt resolution — and the system architecture to run it at sub-2s speed.",
+        eyebrow: 'K-12 Learning Platform · Product Strategy · Recommendation Systems · System Design',
+        title: 'Personalised Learning Recommendation System',
+        summary: "Designed a personalised learning layer for a K-12 Math platform to make post-class learning *more relevant to each learner's performance, skill gaps and learning journey*.",
+        facts: [
+            { k: 'Type', v: 'Product Strategy · Recommendation Systems · System Design' },
+            { k: 'Goal', v: '+25% engagement · +30% completion · +20% satisfaction' },
+            { k: 'North star', v: 'Weekly Active Practice Rate: ~18% baseline → ≥45% at 6 months → ≥65% at 12 months' },
+            { k: 'Deliverables', v: 'PRD · User Stories · Requirements · Prioritisation Matrix · System Architecture · Database Schema · Wireflows · NFRs · Metrics · Trade-off Analysis' },
+        ],
+        sections: [
+            {
+                heading: 'The problem',
+                paras: [
+                    "Bhanzu's live-class infrastructure was already in place, but learners received *the same post-class experience* regardless of their performance or learning gaps. Struggling learners lacked targeted reinforcement, trainers lacked consolidated learner context, and admins had limited visibility into recommendation effectiveness.",
+                ],
+            },
+            {
+                heading: 'Product strategy',
+                paras: [
+                    "**Personalise the learner's next action.** I translated the needs of Learners, Trainers and Platform Admins into a 10-requirement product scope.",
+                ],
+                items: [
+                    '**Learner:** Adaptive Practice · Learning Roadmap · On-Demand Doubt Resolution',
+                    '**Trainer:** Learner Performance Dashboard · Post-Class Assignment Visibility · Session Prep Summary',
+                    '**Admin:** Recommendation Analytics · Platform Quality Monitoring · Credit Depletion Alerts',
+                ],
+            },
+            {
+                heading: 'The core recommendation loop',
+                paras: [
+                    '> Learning activity → Identify skill gaps → Recommend practice → Measure action & outcome',
+                    'Target metrics included ≥40% recommendation CTR, ≥30% roadmap-to-practice conversion, +15% post-practice quiz improvement and ≥70% module completion.',
+                ],
+            },
+            {
+                heading: 'Prioritisation & system design',
+                paras: [
+                    '**Turn requirements into a feasible product.** Used Impact × Effort to prioritise Adaptive Practice, Doubt Resolution and Learning Roadmap as *strategic bets*, while Post-Class Assignments, Session Prep Summary and Credit Alerts became *quick wins*.',
+                    'Designed a service-oriented architecture connecting:',
+                    '> Learner / Trainer / Admin → API Gateway → Auth, Recommendation, Session, Analytics & Notification Services → dedicated data stores',
+                    'with requirements for 10K concurrent users, 99.9% availability and sub-2s quiz load time.',
+                ],
+            },
+            {
+                heading: 'Key product trade-off',
+                paras: [
+                    '**Personalisation vs. performance.** Deeper real-time analysis could improve recommendation precision but increase latency. I prioritised the sub-2-second experience and designed around:',
+                    '> Precomputed recommendations + 15–30 min caching + event-driven refresh',
+                    'This keeps recommendations sufficiently fresh while *protecting response speed for K-12 learners*.',
+                ],
+            },
+            {
+                heading: 'Validation',
+                paras: [
+                    '**Measure behaviour, not just recommendation quality.** Defined metrics across engagement, learning outcomes, satisfaction, trainer effectiveness and platform health, with future experiments including A/B testing cache freshness and adding learner feedback to improve recommendation relevance.',
+                ],
+            },
+        ],
+        skills: [
+            'Product Discovery', 'Problem Framing', 'Product Strategy', 'Personalisation',
+            'Recommendation Systems', 'PRD', 'Requirements', 'Prioritisation', 'System Design',
+            'Architecture', 'Database Design', 'API Design', 'NFRs', 'Performance & Scalability',
+            'Product Metrics', 'Experimentation', 'Wireflows',
+        ],
+        pdf: 'assets/K12-Personalised-Learning-PRD.pdf',
+        link: 'https://elevate-teach-admin.lovable.app',
+        linkLabel: 'View the prototype',
+    },
 ];
 (() => {
     const grids = { ai: document.getElementById('aiGrid'), case: document.getElementById('caseGrid') };
