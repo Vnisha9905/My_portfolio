@@ -322,6 +322,15 @@
         .icon-link:hover { border-color: var(--accent); }
         .icon-link.pdf { background: var(--accent); border-color: var(--accent); color: #fff; }
         .icon-link.pdf:hover { background: #d63f87; }
+        /* ---------- Skills ---------- */
+        .skill-groups { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gap); }
+        .skill-group h3 { font-size: 16px; margin-bottom: 14px; }
+        .skill-group .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .skill-group .tag { font-size: 10px; letter-spacing: 0.08em; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--gap); }
+        .certs { margin-top: 48px; }
+        .certs .head { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+
         /* ---------- Experience mosaic ---------- */
         .timeline { position: relative; }
         .timeline::before {
@@ -353,7 +362,7 @@
         .award p { font-size: 13px; }
 
         /* ---------- Education ---------- */
-        .edu-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: var(--gap); }
+        .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
         .edu .when { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--faint); }
         .edu h3 { font-size: 22px; margin: 12px 0 6px; }
         .edu h4 { font-size: 16px; margin-bottom: 10px; }
@@ -401,7 +410,7 @@
             .grid-3 { grid-template-columns: 1fr; }
             .work-grid { grid-template-columns: 1fr 1fr; }
             .edu-grid { grid-template-columns: 1fr 1fr; }
-            .edu-grid .edu:first-child { grid-column: 1 / -1; }
+            .skill-groups { grid-template-columns: 1fr 1fr; }
             .channels { grid-template-columns: 1fr; }
         }
         @media (max-width: 760px) {
@@ -425,6 +434,7 @@
             .modal-inner { padding: 22px 20px 24px; }
             .facts { grid-template-columns: 1fr; gap: 14px; }
             .edu-grid { grid-template-columns: 1fr; }
+            .skill-groups, .grid-2 { grid-template-columns: 1fr; }
             .stats { grid-template-columns: 1fr; }
             .stat + .stat { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); margin-top: 24px; }
         }
@@ -438,7 +448,7 @@
             <div class="nav-links">
                 <a href="#about" class="link"><b>01</b>About</a>
                 <a href="#projects" class="link"><b>02</b>Projects</a>
-                <a href="#expertise" class="link"><b>03</b>Expertise</a>
+                <a href="#skills" class="link"><b>03</b>Skills</a>
                 <a href="#experience" class="link"><b>04</b>Experience</a>
                 <a href="#education" class="link"><b>05</b>Education</a>
                 <a href="#contact" class="cta">Let's talk <span class="arrow"></span></a>
@@ -448,7 +458,7 @@
         <div class="mobile-menu" id="mobileMenu">
             <a href="#about"><b>01</b>About</a>
             <a href="#projects"><b>02</b>Projects</a>
-            <a href="#expertise"><b>03</b>Expertise</a>
+            <a href="#skills"><b>03</b>Skills</a>
             <a href="#experience"><b>04</b>Experience</a>
             <a href="#education"><b>05</b>Education</a>
             <a href="#contact"><b>06</b>Contact</a>
@@ -458,19 +468,19 @@
     <!-- 00 Hero -->
     <header class="hero">
         <div class="wrap">
-            <div class="eyebrow reveal">EdTech Specialist &amp; Product Manager</div>
-            <h1 class="reveal">Building <em>engaging</em> learning experiences that scale.</h1>
+            <div class="eyebrow reveal">Associate Product Manager · AI</div>
+            <h1 class="reveal">From ambiguous problems to <em>shipped</em> products.</h1>
             <p class="lede reveal">
-                I'm Nisha Verma, an EdTech Specialist transitioning into Product Management. I combine pedagogical expertise with data-driven insights to develop impactful K-8 educational products that drive student engagement and outcomes.
+                I'm Nisha Verma, a product manager working on 0→1 products, B2C experiences and AI-powered products — from discovery and solution design through launch and measurement.
             </p>
             <div class="actions reveal">
                 <a href="#projects" class="cta primary">View my work <span class="arrow"></span></a>
                 <a href="#contact" class="cta">Get in touch <span class="arrow"></span></a>
             </div>
             <div class="stats reveal">
-                <div class="stat"><div class="num">300+</div><div class="lbl">Students impacted</div></div>
-                <div class="stat"><div class="num">6+</div><div class="lbl">Years experience</div></div>
-                <div class="stat"><div class="num">100+</div><div class="lbl">Live sessions delivered</div></div>
+                <div class="stat"><div class="num">40/41</div><div class="lbl">Launch checks passed on OutLoud V2</div></div>
+                <div class="stat"><div class="num">+20%</div><div class="lbl">User satisfaction from feedback-led fixes</div></div>
+                <div class="stat"><div class="num">−30%</div><div class="lbl">Session failures at Bhanzu</div></div>
             </div>
         </div>
     </header>
@@ -480,18 +490,18 @@
         <div class="wrap about-grid">
             <div class="reveal">
                 <div class="eyebrow">01 &nbsp; About</div>
-                <h2 class="section-title">From educator to <em>product thinker</em>.</h2>
+                <h2 class="section-title">Product manager, <em>0→1</em> by default.</h2>
             </div>
             <div class="about-body reveal">
                 <p>
-                    My journey didn't start in a tech hub; it started in the virtual classroom. As a Mathematics Facilitator, I've spent years observing how students interact with digital learning environments. I've seen firsthand where they engage, where they struggle, and what causes churn.
+                    I'm a product management professional with hands-on experience in 0→1 product development, B2C products, user research, product analytics, PRDs, prioritization and AI-powered products.
                 </p>
                 <p>
-                    This frontline experience has cultivated a deep empathy for the end-user (students and parents). I approach Product Management not just as building features, but as solving core educational problems through continuous assessment-driven iteration, structured content delivery, and clear communication.
+                    I take ambiguous problems from discovery through solution design, launch and measurement, working cross-functionally with engineering, operations and business teams. At Bhanzu, I turn insights from live sessions and customer feedback into prioritized problem statements, PRDs and roadmap decisions.
                 </p>
                 <div class="callout">
-                    <div class="label">Product philosophy</div>
-                    <p>A great EdTech product doesn't just digitize traditional learning; it leverages technology to provide differentiated, conceptual teaching that scales <em>without losing the human touch</em>.</p>
+                    <div class="label">How I work</div>
+                    <p>Every feature has to strengthen the core problem. If it doesn't, it <em>waits or gets cut</em>.</p>
                 </div>
             </div>
         </div>
@@ -524,52 +534,48 @@
         </div>
     </section>
 
-    <!-- 03 Expertise -->
-    <section id="expertise">
+    <!-- 03 Skills -->
+    <section id="skills">
         <div class="wrap">
             <div class="section-head reveal">
-                <div class="eyebrow">03 &nbsp; Expertise</div>
-                <h2 class="section-title">Skills that drive <em>product</em> success.</h2>
-                <p class="section-lede">Bridging the gap between educational content delivery and scalable tech solutions.</p>
+                <div class="eyebrow">03 &nbsp; Skills</div>
+                <h2 class="section-title">The <em>toolkit</em> behind the work.</h2>
+                <p class="section-lede">From customer research to system design, and the tools I use to prototype and ship.</p>
             </div>
 
-            <div class="grid-3">
-                <div class="card skill reveal">
-                    <div class="idx">A</div>
-                    <h3>User-centric design</h3>
-                    <p>Translating deep understanding of diverse learner needs (K-10) into structured learning materials and intuitive virtual instruction environments.</p>
-                    <ul>
-                        <li>Conceptual teaching design</li>
-                        <li>Differentiated instruction</li>
-                    </ul>
+            <div class="skill-groups">
+                <div class="card skill-group reveal">
+                    <h3>Customer &amp; User Research</h3>
+                    <div class="tags"><span class="tag">Customer interviews</span><span class="tag">Surveys</span><span class="tag">User personas</span></div>
                 </div>
-                <div class="card skill reveal">
-                    <div class="idx">B</div>
-                    <h3>Data-driven iteration</h3>
-                    <p>Tracking student performance through regular assessments to inform lesson content development and measure engagement metrics.</p>
-                    <ul>
-                        <li>Progress monitoring</li>
-                        <li>Assessment-driven tracking</li>
-                    </ul>
+                <div class="card skill-group reveal">
+                    <h3>Data &amp; Analytics</h3>
+                    <div class="tags"><span class="tag">SQL</span><span class="tag">Funnel analysis</span><span class="tag">A/B testing</span><span class="tag">Product analytics</span><span class="tag">Google Analytics</span></div>
                 </div>
-                <div class="card skill reveal">
-                    <div class="idx">C</div>
-                    <h3>Stakeholder management</h3>
-                    <p>Building strong relationships across learning environments and maintaining clear communication channels with crucial user groups.</p>
-                    <ul>
-                        <li>Parent communication</li>
-                        <li>Cross-cohort engagement</li>
-                    </ul>
+                <div class="card skill-group reveal">
+                    <h3>Product Execution</h3>
+                    <div class="tags"><span class="tag">PRD writing</span><span class="tag">Prototyping</span><span class="tag">Sprint planning</span><span class="tag">Prioritization frameworks</span></div>
                 </div>
-            </div>
-
-            <div class="tools reveal">
-                <span class="label">Tools &amp; platforms</span>
-                <span class="tag">Maverick LMS</span>
-                <span class="tag">Zoom</span>
-                <span class="tag">Google Meet</span>
-                <span class="tag">Digital whiteboards</span>
-                <span class="tag">MS Office Suite</span>
+                <div class="card skill-group reveal">
+                    <h3>Technical Communication</h3>
+                    <div class="tags"><span class="tag">APIs</span><span class="tag">System design</span><span class="tag">Technical trade-off evaluation</span><span class="tag">Technical spec writing</span></div>
+                </div>
+                <div class="card skill-group reveal">
+                    <h3>Product Strategy</h3>
+                    <div class="tags"><span class="tag">Strategic roadmapping</span><span class="tag">Market analysis</span><span class="tag">OKRs</span><span class="tag">Executive communication</span><span class="tag">Stakeholder management</span></div>
+                </div>
+                <div class="card skill-group reveal">
+                    <h3>Analytics &amp; Prototyping Tools</h3>
+                    <div class="tags"><span class="tag">Figma</span><span class="tag">Replit</span><span class="tag">Amplitude</span><span class="tag">Notion</span><span class="tag">Google Stitch</span></div>
+                </div>
+                <div class="card skill-group reveal">
+                    <h3>Automation &amp; Integration Tools</h3>
+                    <div class="tags"><span class="tag">Make</span><span class="tag">n8n</span><span class="tag">Claude Code</span><span class="tag">Cursor</span><span class="tag">Lovable</span><span class="tag">Jira</span></div>
+                </div>
+                <div class="card skill-group reveal">
+                    <h3>Cloud &amp; AI Technologies</h3>
+                    <div class="tags"><span class="tag">Cloud Computing</span><span class="tag">AI Fundamentals</span><span class="tag">Microsoft Azure</span></div>
+                </div>
             </div>
         </div>
     </section>
@@ -580,7 +586,7 @@
             <div class="section-head reveal">
                 <div class="eyebrow">04 &nbsp; Experience</div>
                 <h2 class="section-title">Where I've <em>worked</em>.</h2>
-                <p class="section-lede">Achievements sit next to each role, not below it.</p>
+                <p class="section-lede">Achievements sit next to the role, not below it.</p>
             </div>
 
             <div class="timeline">
@@ -588,53 +594,31 @@
                     <span class="dot"></span>
                     <div class="mosaic">
                         <div class="brief">
-                            <div class="when">Sept 2025 — Present</div>
-                            <h3>Math Trainer</h3>
+                            <div class="when">April 2025 — Present</div>
+                            <h3>Product Trainer</h3>
                             <div class="org">Bhanzu</div>
-                            <p>Driving product adoption through engaging delivery for UKG–Grade 9 global cohorts.</p>
+                            <p>Turning what happens in live sessions and customer feedback into prioritized product problems, PRDs and roadmap decisions.</p>
                         </div>
                         <div class="wins">
                             <div class="card win">
-                                <h4>Scale &amp; engagement</h4>
-                                <p>Delivered 100+ live online sessions, ensuring consistently high engagement across diverse global student cohorts.</p>
+                                <h4>Cross-functional discovery</h4>
+                                <p>Led collaboration with trainer, operations and platform teams to identify major workflow gaps, converting insights from live sessions into prioritized problem statements for platform improvements.</p>
                             </div>
                             <div class="card win">
-                                <h4>Content strategy</h4>
-                                <p>Designed and executed structured lesson plans, adapting methodologies for varying learning levels to maximize comprehension.</p>
+                                <h4>RCA &amp; PRD for Maverick</h4>
+                                <p>Scoped and authored a root cause analysis and PRD for critical pacing algorithm defects in Maverick, presenting platform-impacting findings to stakeholders and influencing roadmap decisions.</p>
                             </div>
                             <div class="card win">
-                                <h4>Metrics &amp; tracking</h4>
-                                <p>Tracked student performance through regular assessments, using the data for progress monitoring and targeted intervention.</p>
+                                <h4>+20% user satisfaction</h4>
+                                <p>Synthesized customer feedback from 100+ parent PTM sessions to surface recurring product gaps, resulting in 2 major dashboard and syllabus enhancements.</p>
                             </div>
                             <div class="card win">
-                                <h4>UX improvement</h4>
-                                <p>Simplified complex mathematical concepts using real-life applications, improving the learner experience and subject understanding.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="role reveal">
-                    <span class="dot"></span>
-                    <div class="mosaic">
-                        <div class="brief">
-                            <div class="when">Feb 2019 — Dec 2025</div>
-                            <h3>Independent Mathematics Tutor</h3>
-                            <div class="org">Self-employed</div>
-                            <p>Building foundational skills and managing end-to-end learning journeys.</p>
-                        </div>
-                        <div class="wins">
-                            <div class="card win">
-                                <h4>200+ learners</h4>
-                                <p>Individualized instruction with strong acquisition and retention over six years.</p>
-                            </div>
-                            <div class="card win">
-                                <h4>Measurable outcomes</h4>
-                                <p>Strengthened foundational skills and academic performance through tailored approaches.</p>
+                                <h4>−30% session failures</h4>
+                                <p>Delivered live math sessions to 100+ global students and proactively reported platform access issues, enabling data-driven resolutions.</p>
                             </div>
                             <div class="card win wide">
-                                <h4>Cross-channel delivery</h4>
-                                <p>Built effective learning relationships in both in-person (offline) and virtual environments.</p>
+                                <h4>Executive documentation</h4>
+                                <p>Developed and presented executive-level documentation on platform issues, facilitating stakeholder alignment and driving implementation of next-step solutions.</p>
                             </div>
                         </div>
                     </div>
@@ -642,22 +626,17 @@
             </div>
 
             <div class="awards">
-                <div class="head reveal">Key achievements</div>
-                <div class="grid-3">
+                <div class="head reveal">Honors &amp; awards</div>
+                <div class="grid-2">
                     <div class="card award reveal">
-                        <div class="k">01</div>
-                        <h4>Performance improvement</h4>
-                        <p>Consistently improved student outcomes through targeted teaching and data-backed assessments.</p>
+                        <div class="k">Bhanzu</div>
+                        <h4>The Confidence Builder</h4>
+                        <p>Recognized for creating a supportive learning experience through positive reinforcement and student engagement.</p>
                     </div>
                     <div class="card award reveal">
-                        <div class="k">02</div>
-                        <h4>Content architecture</h4>
-                        <p>Designed structured learning materials essential for effective concept building.</p>
-                    </div>
-                    <div class="card award reveal">
-                        <div class="k">03</div>
-                        <h4>Adaptability</h4>
-                        <p>Maintained strong outcomes by adapting strategies for diverse learners across offline and digital platforms.</p>
+                        <div class="k">Bhanzu</div>
+                        <h4>Level Up Award</h4>
+                        <p>Recognized for strong performance and continuous improvement in role.</p>
                     </div>
                 </div>
             </div>
@@ -669,26 +648,30 @@
         <div class="wrap">
             <div class="section-head reveal">
                 <div class="eyebrow">05 &nbsp; Education</div>
-                <h2 class="section-title">What I <em>studied</em>.</h2>
-                <p class="section-lede">A foundation in language and communication — crucial for clear product documentation and stakeholder engagement.</p>
+                <h2 class="section-title">Education &amp; <em>certifications</em>.</h2>
             </div>
             <div class="edu-grid">
                 <div class="card edu reveal">
-                    <div class="when">Aug 2016 — June 2019</div>
+                    <div class="when">2026</div>
+                    <h3>AI-First Product Management Apprenticeship</h3>
+                    <p class="sub">Airtribe</p>
+                </div>
+                <div class="card edu reveal">
+                    <div class="when">2016 — 2019</div>
                     <h3>Bachelor's in English</h3>
                     <p class="sub">Dr. Shyama Prasad University, Ranchi</p>
-                    <p>Honours in English Language · Final score 69%</p>
                 </div>
-                <div class="card edu reveal">
-                    <div class="when">Certification</div>
-                    <h4 style="margin-top:12px">Computer Fundamentals</h4>
-                    <p>MS Office, Internet Applications</p>
-                </div>
-                <div class="card edu reveal">
-                    <div class="when">Languages</div>
-                    <div class="tags" style="margin-top:14px">
-                        <span class="tag">English</span>
-                        <span class="tag">Hindi</span>
+            </div>
+            <div class="certs">
+                <div class="head reveal">Certifications</div>
+                <div class="grid-2">
+                    <div class="card edu reveal">
+                        <div class="when">Microsoft</div>
+                        <h4>AI Concepts for Developers and Technology Professionals</h4>
+                    </div>
+                    <div class="card edu reveal">
+                        <div class="when">Microsoft</div>
+                        <h4>Microsoft Azure Fundamentals — AZ-900 Learning Path</h4>
                     </div>
                 </div>
             </div>
@@ -700,15 +683,15 @@
         <div class="wrap">
             <div class="eyebrow reveal">06 &nbsp; Contact</div>
             <div class="contact-card reveal">
-                <h2>Ready to build <em>better</em> learning experiences?</h2>
-                <p class="lede">I'm actively seeking Product Management roles where I can leverage my EdTech experience to create impactful, user-centric products.</p>
+                <h2>Let's build something <em>worth</em> coming back to.</h2>
+                <p class="lede">Open to Associate Product Manager and AI product roles. The fastest way to reach me is email.</p>
                 <div class="actions">
-                    <a href="mailto:nishaverma13feb@gmail.com" class="cta primary">Email me <span class="arrow"></span></a>
+                    <a href="mailto:v.nisha9905@gmail.com" class="cta primary">Email me <span class="arrow"></span></a>
                     <button type="button" class="cta" id="copyBtn">Copy email <span class="arrow"></span></button>
                     <a href="https://www.linkedin.com/in/nisha-verma-b0aaab400" target="_blank" rel="noopener noreferrer" class="cta">LinkedIn <span class="arrow"></span></a>
                 </div>
                 <div class="channels">
-                    <div class="channel"><div class="k">Email</div><a href="mailto:nishaverma13feb@gmail.com">nishaverma13feb@gmail.com</a></div>
+                    <div class="channel"><div class="k">Email</div><a href="mailto:v.nisha9905@gmail.com">v.nisha9905@gmail.com</a></div>
                     <div class="channel"><div class="k">Phone</div><a href="tel:+916205709593">+91-6205709593</a></div>
                     <div class="channel"><div class="k">LinkedIn</div><a href="https://www.linkedin.com/in/nisha-verma-b0aaab400" target="_blank" rel="noopener noreferrer">nisha-verma</a></div>
                 </div>
@@ -719,7 +702,7 @@
     <footer>
         <div class="wrap">
             <span>&copy; <span id="currentYear"></span> Nisha Verma</span>
-            <span>Mathematics Facilitator → Product Manager</span>
+            <span>Associate Product Manager · AI</span>
         </div>
     </footer>
 
@@ -764,7 +747,7 @@
         // Copy email
         const copyBtn = document.getElementById('copyBtn');
         copyBtn.addEventListener('click', async () => {
-            const email = 'nishaverma13feb@gmail.com';
+            const email = 'v.nisha9905@gmail.com';
             try {
                 await navigator.clipboard.writeText(email);
             } catch (e) {
