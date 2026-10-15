@@ -294,7 +294,7 @@ const PROJECTS = [
         title: "Pickup confusion isn't a UX problem. It's a regulatory compliance gap.",
         summary: "Uber operates across Delhi NCR, Mumbai, Bangalore, Hyderabad and Pune: cities with dense infrastructure, regulated transit zones and complex pickup environments. At the start of every trip, users drop a pin wherever they are standing and the app accepts it without validation. Drivers then navigate to a point that may be inside a restricted zone, a narrow lane or a gated complex. The calls, waiting and cancellations happen only *after the driver has already arrived*. I treated this as a research question before it became a design question.",
         facts: [
-            { k: 'Type', v: 'Product research & strategy · assignment' },
+            { k: 'Type', v: 'Product research & strategy' },
             { k: 'Scope', v: 'Cab rides in metro cities, focused on Premium and Corporate users booking from airports, malls, metro stations and office complexes' },
             { k: 'Research base', v: 'Regulatory analysis · market trends · rider survey (n=10) · in-depth interviews (n=3)' },
             { k: 'The bet', v: "Pickups fail because the app doesn't know where a car can legally stop. Fixing that beats clearer copy." },
@@ -364,7 +364,7 @@ const PROJECTS = [
         title: 'Training works. Nobody can prove it.',
         summary: "Every year, L&D managers walk into budget reviews with completion rates and walk out with budget cuts. It isn't because training doesn't work, but because its business impact can't be proven. That *ROI invisibility* is directly causing clients to reduce platform spend and skip renewals. I built a 2–3 year strategy for mid-sized IT services companies in India that turns a corporate learning platform from a content delivery tool into a business impact engine.",
         facts: [
-            { k: 'Type', v: 'B2B product strategy · 2–3 year horizon · Airtribe assignment' },
+            { k: 'Type', v: 'B2B product strategy · 2–3 year horizon' },
             { k: 'Segment', v: 'Mid-sized IT services companies in India. Primary buyer: L&D or HR Manager. Secondary: CLO or VP of L&D.' },
             { k: 'Market sizing', v: 'My estimates: TAM $180–300M ARR · SAM $45–75M · SOM $3.5–7.5M within 2–3 years' },
             { k: 'The bet', v: 'These companies will share Jira data in exchange for proof that their training worked.' },
