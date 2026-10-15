@@ -21,6 +21,7 @@
  * link:     live product / prototype URL (shows the link icon button)
  * linkLabel: optional text for the link button (default "Try the product")
  * linkType:  optional, 'prototype' shows a phone icon instead of the link icon
+ * pdfLabel:  optional text for the PDF button (default "Case study PDF")
  *
  * In any text, *word* renders as pink italics and **word** as bold.
  */
@@ -293,7 +294,7 @@ const PROJECTS = [
         title: "Pickup confusion isn't a UX problem. It's a regulatory compliance gap.",
         summary: "Uber operates across Delhi NCR, Mumbai, Bangalore, Hyderabad and Pune: cities with dense infrastructure, regulated transit zones and complex pickup environments. At the start of every trip, users drop a pin wherever they are standing and the app accepts it without validation. Drivers then navigate to a point that may be inside a restricted zone, a narrow lane or a gated complex. The calls, waiting and cancellations happen only *after the driver has already arrived*. I treated this as a research question before it became a design question.",
         facts: [
-            { k: 'Type', v: 'Product research & strategy · self-initiated assignment' },
+            { k: 'Type', v: 'Product research & strategy · assignment' },
             { k: 'Scope', v: 'Cab rides in metro cities, focused on Premium and Corporate users booking from airports, malls, metro stations and office complexes' },
             { k: 'Research base', v: 'Regulatory analysis · market trends · rider survey (n=10) · in-depth interviews (n=3)' },
             { k: 'The bet', v: "Pickups fail because the app doesn't know where a car can legally stop. Fixing that beats clearer copy." },
@@ -354,6 +355,110 @@ const PROJECTS = [
         link: 'https://smart-pick-up-guide.lovable.app/',
         linkType: 'prototype',
         linkLabel: 'Try the prototype',
+    },    {
+        group: 'case',
+        name: 'B2B Corporate L&D Strategy',
+        tagline: 'Proof of impact, not completion rates',
+        intro: "L&D managers walk into budget reviews with completion rates and walk out with budget cuts, because training's business impact can't be proven. This 2–3 year strategy for mid-sized Indian IT services companies connects learning data to Jira outcomes, starting with one integration, one buyer and one department.",
+        eyebrow: 'Product strategy case study · B2B SaaS · Corporate learning',
+        title: 'Training works. Nobody can prove it.',
+        summary: "Every year, L&D managers walk into budget reviews with completion rates and walk out with budget cuts. It isn't because training doesn't work, but because its business impact can't be proven. That *ROI invisibility* is directly causing clients to reduce platform spend and skip renewals. I built a 2–3 year strategy for mid-sized IT services companies in India that turns a corporate learning platform from a content delivery tool into a business impact engine.",
+        facts: [
+            { k: 'Type', v: 'B2B product strategy · 2–3 year horizon · Airtribe assignment' },
+            { k: 'Segment', v: 'Mid-sized IT services companies in India. Primary buyer: L&D or HR Manager. Secondary: CLO or VP of L&D.' },
+            { k: 'Market sizing', v: 'My estimates: TAM $180–300M ARR · SAM $45–75M · SOM $3.5–7.5M within 2–3 years' },
+            { k: 'The bet', v: 'These companies will share Jira data in exchange for proof that their training worked.' },
+            { k: 'Output', v: 'Land–Expand–Entrench strategy, quarterly roadmap, moats, trade-offs and metrics' },
+            { k: 'Market data source', v: 'IMARC Group, India Corporate Training Market Size and Report, 2034' },
+        ],
+        sections: [
+            {
+                heading: 'Intended vs actual',
+                paras: [
+                    '**Intended:** Help L&D managers defend their training budget, so that clients renew.',
+                    "**Actual:** The Impact Dashboard isn't the strategy. It's the *wedge*: the mechanism that earns the data-sharing relationship the wider platform depends on.",
+                ],
+            },
+            {
+                heading: 'The market',
+                items: [
+                    "**Size and growth:** India's corporate training market was valued at about $12.2B in 2025 and is projected to reach $39.9B by 2034, a 12.86% CAGR over 2026–2034 (source: IMARC Group).",
+                    '**My sizing:** I estimated TAM, SAM and SOM myself, narrowing from the technology workforce to mid-sized IT services companies and engineering units in tech parks such as Bengaluru, Hyderabad, Pune and Gurugram. These are my estimates, not published figures.',
+                ],
+            },
+            {
+                heading: 'The gap in the competition (my analysis)',
+                items: [
+                    '**Content libraries (Udemy Business, Coursera, LinkedIn Learning):** cheap and broad, but low completion. *Opening:* automated interactive learning plus tracking that proves ROI.',
+                    '**Legacy vendors (NIIT, Vinsys):** strong CLO relationships, but weak software and heavy manual administration. *Opening:* a seamless SaaS workflow.',
+                    '**Tech bootcamps (Scaler for Business, Edstellar):** strong coding labs, but expensive seats and little non-technical coverage. *Opening:* technical and soft skills under one affordable platform.',
+                    '**Assessment suites (Mercer | Mettl, KNOLSKAPE):** excellent ROI data, but standalone with no learning environment. *Opening:* assessment data built into an everyday learning engine.',
+                ],
+            },
+            {
+                heading: 'The bet and the staged path',
+                items: [
+                    '**Land:** One department, one Jira integration, priced per active learner. Data foundation in Q1, ROI visible in Q2. *Big bet, high confidence.*',
+                    '**Expand:** Once multi-department demand justifies it, add GitHub and HRMS integrations and premium analytics. Each new department head has the same budget-defence need. *Pilot, medium confidence.*',
+                    '**Entrench:** The platform becomes the skill-to-performance source of truth, with an AI layer on the accumulated data and multi-year contracts. *Pilot, low confidence until Expand data exists.*',
+                    '**Why it should spread:** The L&D manager who survives a budget review holds proof that peer departments lack. That visibility gap, not a sales pitch, creates the internal pull.',
+                ],
+            },
+            {
+                heading: 'What I chose not to do',
+                items: [
+                    '**Depth over breadth.** One integration, one buyer, one department at launch. Breadth is deferred, not abandoned.',
+                    '**No** GitHub, HRMS or other integrations until the Jira wedge is validated.',
+                    '**No** large-enterprise or CLO-led deals in year 1.',
+                    '**No** standalone assessment product. The platform stays an active learning engine with outcome proof built in.',
+                ],
+            },
+            {
+                heading: 'The biggest risk and the mitigation',
+                paras: [
+                    "Not every client will agree to share Jira data, because of privacy and governance policies, and that is a dependency I can't fully control. So the plan has three safeguards:",
+                ],
+                items: [
+                    '**Phased consent:** start with read-only, aggregated ticket volumes and no individual-level access.',
+                    '**Fallback metric:** a self-reported outcome survey where Jira access is refused.',
+                    '**Early signal:** track the opt-in rate in Q1. A low rate means revisit the approach, not assume the bet has failed.',
+                ],
+            },
+            {
+                heading: 'Moats',
+                items: [
+                    '**Data advantage:** matched training-to-Jira outcome data that no competitor has.',
+                    '**Integration stickiness:** leaving means losing the ROI report history used in past budget reviews.',
+                    '**Cross-client benchmarking:** each client improves the peer benchmark for the others.',
+                    '**First-mover brand:** only valuable because it lets the dataset build before a fast follower catches up.',
+                ],
+            },
+            {
+                heading: 'Stress test',
+                paras: [
+                    "A funded competitor could copy the dashboard and the Jira integration in a quarter. They couldn't copy the matched historical dataset or the position inside clients' budget reviews, because both take real usage time to build.",
+                ],
+            },
+            {
+                heading: 'Roadmap and metrics',
+                items: [
+                    '**Q1, Connect data:** Jira integration and training-to-outcome mapping.',
+                    '**Q2, Prove impact:** Impact Dashboard and before-vs-after ROI reports for leadership.',
+                    '**Q3, Drive renewals:** automated impact reports and renewal insights.',
+                    '**Leading metrics:** Jira consent rate, report usage rate, department expansion rate.',
+                    '**Lagging metrics:** ARR, LTV, Magic Number and NRR.',
+                ],
+            },
+            {
+                heading: 'What this does not prove yet',
+                paras: [
+                    "The pain is identified through the market and competitive research in this package. Validating it with L&D managers is the next step.",
+                    'The core assumption, that clients will share Jira data, is untested. The expansion triggers (2–3 successful quarterly reviews, 3+ active departments) are hypotheses to validate, not commitments.',
+                ],
+            },
+        ],
+        pdf: 'B2B_Product_Strategy.pdf',
+        pdfLabel: 'Product strategy PDF',
     },
 ];
 (() => {
@@ -497,7 +602,7 @@ const PROJECTS = [
             a.appendChild(el('span', null, label));
             links.appendChild(a);
         };
-        if (p.pdf) addLink(p.pdf, 'pdf', 'Case study PDF');
+        if (p.pdf) addLink(p.pdf, 'pdf', p.pdfLabel || 'Case study PDF');
         if (p.link) addLink(p.link, p.linkType === 'prototype' ? 'proto' : 'link', p.linkLabel || 'Try the product');
         links.hidden = !links.children.length;
 
